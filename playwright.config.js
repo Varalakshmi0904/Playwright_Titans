@@ -1,9 +1,11 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
 import { defineBddConfig } from 'playwright-bdd';
+import dotenv from "dotenv";
+dotenv.config();
 const testDir = defineBddConfig({
     features: "./feature",
-    steps: ["./steps", "./fixtures"],
+    steps: ["./steps"],
 });
 /**
 
@@ -19,8 +21,8 @@ const testDir = defineBddConfig({
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({
-  //testDir,
-  testDir: './tests',
+  testDir,
+  //testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -33,6 +35,8 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+      baseURL: process.env.BASE_URL,
+
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
 
