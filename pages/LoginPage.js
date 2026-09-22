@@ -10,12 +10,12 @@ export class LoginPage{
         this.errorMessage=page.getByText('Login credentials incorrect')
 }
 async goto() {
-        await this.page.goto('/');
+        await this.page.goto('/#/Login');
     
 }
 async enterCredentials(username, password) {
-    await this.username.fill(String(username));
-    await this.password.fill(String(password));
+    await this.username.fill(username);
+    await this.password.fill(password);
     await this.loginButton.click();
 
 }

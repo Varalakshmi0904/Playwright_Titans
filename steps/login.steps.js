@@ -1,39 +1,43 @@
 import { createBdd } from "playwright-bdd";
-import{ExcelReader} from "../utils/ExcelReader.js";
-import { LoginPage } from '../pages/LoginPage.js';
-import { expect } from '@playwright/test';
+import { ExcelReader } from "../utils/ExcelReader.js";
+import { LoginPage } from "../pages/LoginPage.js";
+import { expect } from "@playwright/test";
 
-const { Given, When, Then } = createBdd();
+const { Given, When, Then, Before  } = createBdd();
+let loginPage;
+let excelReader;
 
-
-Given('User is on the Login page', async ({page}) => {
-    const loginPage = new LoginPage(page);
-    await loginPage.goto();
-    });
-
-When('User clicks the Log In button with valid credentials', async ({page}) => {
-    const loginPage = new LoginPage(page);
-    await loginPage.enterCredentials(process.env.APP_USERNAME, process.env.APP_PASSWORD);
+Before(async ({ page }) => {
+  loginPage = new LoginPage(page);
+  excelReader = new ExcelReader(process.env.EXCEL_PATH);
+});
+Given("User is on the Login page", async ({ page }) => {
+  await loginPage.goto();
 });
 
+When(
+  "User enters valid credentials from Excel for {string}",
+  async ({ page }, testCase) => {
+    const loginData = excelReader.getExcelData("login", testCase);
 
-Then('User should be redirected to the Home page', async ({page}) => {
-    await expect(page).toHaveURL('https://suite8demo.suiteondemand.com/#/home');
-  
-});
-When('the user enters invalid credentials for {string}', async ({page}, arg) => {
-      const loginPage = new LoginPage(page);
+    await loginPage.enterCredentials(loginData.username, loginData.password);
+  },
+);
+When(
+  "User enters invalid credentials from Excel for {string}",
+  async ({ page }, testCase) => {
+    const loginData = excelReader.getExcelData("login", testCase);
+    await loginPage.enterCredentials(loginData.username, loginData.password);
+  },
+);
 
- const excelReader = new ExcelReader("TestData/testdata.xlsx");
- const loginData = excelReader.getExcelData("login", arg);
-    await loginPage.enterCredentials(loginData.username,loginData.password);
+Then(
+  "User should be redirected to the SuiteCRM Dashboard",
+  async ({ page }) => {
+    await expect(page).toHaveURL("https://suite8demo.suiteondemand.com/#/home");
+  },
+);
 
-
-
-});
-
-Then('the user should see {string} message', async ({page}, arg) => {
-    const loginPage = new LoginPage(page);
-    await expect(loginPage.errorMessage).toContainText(arg);
- 
+Then("User should see {string} message", async ({ page }, arg) => {
+  await expect(loginPage.errorMessage).toContainText(arg);
 });
