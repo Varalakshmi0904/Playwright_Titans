@@ -1,39 +1,32 @@
 import { createBdd } from "playwright-bdd";
-import{ExcelReader} from "../utils/ExcelReader.js";
-import { LoginPage } from '../pages/LoginPage.js';
-import { expect } from '@playwright/test';
+import { expect } from "@playwright/test";
+import { test } from "../fixtures/fixtures.js";
+const { Given, When, Then } = createBdd(test);
 
-const { Given, When, Then } = createBdd();
-
-
-Given('User is on the Login page', async ({page}) => {
-    const loginPage = new LoginPage(page);
-    await loginPage.goto();
-    });
-
-When('User clicks the Log In button with valid credentials', async ({page}) => {
-    const loginPage = new LoginPage(page);
-    await loginPage.enterCredentials(process.env.APP_USERNAME, process.env.APP_PASSWORD);
+Given("User is on the Login page", async ({ loginPage  }) => {
+  await loginPage.goto();
 });
 
+When('User enters the valid credentials from Excel and click login', async ({loginPage, excelReader}) => {
+        const loginData = excelReader.getExcelData("login", "ValidCredentials");
+    await loginPage.enterCredentials(loginData.username, loginData.password);
+  },
+);
 
-Then('User should be redirected to the Home page', async ({page}) => {
-    await expect(page).toHaveURL('https://suite8demo.suiteondemand.com/#/home');
-  
-});
-When('the user enters invalid credentials for {string}', async ({page}, arg) => {
-      const loginPage = new LoginPage(page);
-
- const excelReader = new ExcelReader("TestData/testdata.xlsx");
- const loginData = excelReader.getExcelData("login", arg);
-    await loginPage.enterCredentials(loginData.username,loginData.password);
+When('User enters invalid credentials from Excel for {string} and click login', async ({loginPage, excelReader}, arg) => {
+        const loginData = excelReader.getExcelData("login", arg);
+    await loginPage.enterCredentials(loginData.username, loginData.password);
+  },
+);
 
 
+Then(
+  "User should be redirected to the SuiteCRM Dashboard",
+  async ({ page }) => {
+    await expect(page).toHaveURL("https://suite8demo.suiteondemand.com/#/home");
+  },
+);
 
-});
-
-Then('the user should see {string} message', async ({page}, arg) => {
-    const loginPage = new LoginPage(page);
-    await expect(loginPage.errorMessage).toContainText(arg);
- 
+Then("User should see {string} message", async ({ loginPage  }, arg) => {
+  await expect(loginPage.errorMessage).toContainText(arg);
 });
