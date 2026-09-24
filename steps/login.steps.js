@@ -1,35 +1,24 @@
 import { createBdd } from "playwright-bdd";
-import { ExcelReader } from "../utils/ExcelReader.js";
-import { LoginPage } from "../pages/LoginPage.js";
 import { expect } from "@playwright/test";
+import { test } from "../fixtures/fixtures.js";
+const { Given, When, Then } = createBdd(test);
 
-const { Given, When, Then, Before  } = createBdd();
-let loginPage;
-let excelReader;
-
-Before(async ({ page }) => {
-  loginPage = new LoginPage(page);
-  excelReader = new ExcelReader(process.env.EXCEL_PATH);
-});
-Given("User is on the Login page", async ({ page }) => {
+Given("User is on the Login page", async ({ loginPage  }) => {
   await loginPage.goto();
 });
 
-When(
-  "User enters valid credentials from Excel for {string}",
-  async ({ page }, testCase) => {
-    const loginData = excelReader.getExcelData("login", testCase);
+When('User enters the valid credentials from Excel and click login', async ({loginPage, excelReader}) => {
+        const loginData = excelReader.getExcelData("login", "ValidCredentials");
+    await loginPage.enterCredentials(loginData.username, loginData.password);
+  },
+);
 
+When('User enters invalid credentials from Excel for {string} and click login', async ({loginPage, excelReader}, arg) => {
+        const loginData = excelReader.getExcelData("login", arg);
     await loginPage.enterCredentials(loginData.username, loginData.password);
   },
 );
-When(
-  "User enters invalid credentials from Excel for {string}",
-  async ({ page }, testCase) => {
-    const loginData = excelReader.getExcelData("login", testCase);
-    await loginPage.enterCredentials(loginData.username, loginData.password);
-  },
-);
+
 
 Then(
   "User should be redirected to the SuiteCRM Dashboard",
@@ -38,6 +27,6 @@ Then(
   },
 );
 
-Then("User should see {string} message", async ({ page }, arg) => {
+Then("User should see {string} message", async ({ loginPage  }, arg) => {
   await expect(loginPage.errorMessage).toContainText(arg);
 });
