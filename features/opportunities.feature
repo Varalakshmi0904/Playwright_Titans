@@ -1,31 +1,30 @@
+@opportunities
 Feature: Opportunities Module
 
-Background:
-  Given User should be logged into the SuiteCRM Dashboard page
+  Background:
+    Given User is logged into the SuiteCRM Dashboard page
 
-
-
-
+  @tc01 @dropdown
   Scenario: Verify Opportunities dropdown menu
-    When User hovers over "Opportunities"
+    When User hovers over Opportunities
     Then User should see the Opportunities dropdown menu
 
-
- 
-
+  @tc02 @create
   Scenario: Verify Create Opportunity navigation
-    When User clicks "Create Opportunity"
+    When User clicks Create Opportunity
     Then User should be redirected to the Create Opportunity page
 
-
-  Scenario: Verify Create Opportunity page title
+  @tc03 @create
+  Scenario Outline: Verify mandatory field indicators are displayed
     Given User is on the Create Opportunity page
-    Then User should see the "Create Opportunity" page title
+    When User views the Create Opportunity page
+    Then User should see a mandatory indicator next to "<field>"
 
-
-  Scenario: Verify mandatory field indicators are displayed
-    Given User is on the Create Opportunity page
-    Then User should see mandatory field indicators
-
+    Examples:
+      | field               |
+      | Opportunity Name    |
+      | Account Name        |
+      | Sales Stage         |
+      | Expected Close Date |
 
   
