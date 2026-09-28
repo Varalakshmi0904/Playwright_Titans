@@ -106,6 +106,60 @@ export class OpportunitiesPage {
   async getMandatoryFieldLabel(fieldName) {
     return this.mandatoryField[fieldName];
   }
+async fillAllMandatoryFieldsAndSave({
+    opportunityName,
+    accountName,
+    opportunityAmount,
+    salesStage,
+    closeDate,
+  }) {
+    if (opportunityName) {
+      await this.opportunityNameInput.fill(opportunityName);
+    }
+
+    if (accountName) {
+      await this.accountNameInput.click();
+      const dropdownPanel = this.page.locator(".p-dropdown-panel");
+      await dropdownPanel.waitFor({ state: "visible" });
+      const searchBox = dropdownPanel.locator("input.p-dropdown-filter");
+      await searchBox.click();
+      await searchBox.pressSequentially(accountName, { delay: 100 });
+      const accountOption = dropdownPanel.getByRole("option", {
+        name: accountName,
+        exact: true,
+      });
+      await accountOption.waitFor({ state: "visible" });
+      await accountOption.click();
+    }
+
+    if (opportunityAmount) {
+      await this.opportunityAmountInput.fill(opportunityAmount);
+    }
+
+    if (salesStage) {
+      await this.salesStageInput.selectOption(salesStage);
+    }
+
+    if (closeDate) {
+      await this.expectedCloseDateInput.fill(closeDate);
+    }
+
+    await this.saveButton.click();
+  }
+
+  async selectDateFromCalendar(closeDate) {
+    await this.calendarIcon.click();
+    await this.expectedCloseDateInput.fill(closeDate);
+  }
+async searchAccount(partialAccountName) {
+  await this.accountNameInput.click();
+  await this.accountSearchBox.fill(partialAccountName);
+}
+
+  async getMatchingAccounts() {
+    return this.accountDropdownPanel.getByRole("option");
+  }
+
 
   
 }
