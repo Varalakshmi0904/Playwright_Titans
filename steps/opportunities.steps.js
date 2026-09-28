@@ -3,15 +3,6 @@ import { expect } from "@playwright/test";
 import { test } from "../fixtures/fixtures.js";
 const { Given, When, Then } = createBdd(test);
 
-Given(
-  "User is logged into the SuiteCRM Dashboard page",
-  async ({ loginPage, excelReader }) => {
-    const loginData = excelReader.getExcelData("login", "ValidCredentials");
-    await loginPage.goto();
-    await loginPage.enterCredentials(loginData.username, loginData.password);
-  },
-);
-
 When("User hovers over Opportunities", async ({ opportunitiesPage }) => {
   await opportunitiesPage.hoverOpportunitiesMenu();
 });
@@ -147,11 +138,8 @@ Then(
 );
 When(
   "User selects a date using the calendar icon next to {string}",
-  async ({ opportunitiesPage, excelReader  }, arg) => {
-     const data = excelReader.getExcelData(
-      "opportunities",
-      "ExpectedCloseDate"
-    );
+  async ({ opportunitiesPage, excelReader }, arg) => {
+    const data = excelReader.getExcelData("opportunities", "ExpectedCloseDate");
     await opportunitiesPage.selectDateFromCalendar(data.ExpectedCloseDate);
   },
 );
@@ -166,20 +154,20 @@ Then(
   },
 );
 
-When('User clicks the dropdown arrow next to {string} and enters a partial account name', async ({opportunitiesPage, excelReader }, arg) => {
- const data = excelReader.getExcelData(
-      "opportunities",
-      "AccountSearch"
-    );
+When(
+  "User clicks the dropdown arrow next to {string} and enters a partial account name",
+  async ({ opportunitiesPage, excelReader }, arg) => {
+    const data = excelReader.getExcelData("opportunities", "AccountSearch");
 
     await opportunitiesPage.searchAccount(data.AccountName);
-});
+  },
+);
 
-Then('User should see matching accounts displayed', async ({opportunitiesPage}) => {
-  const matchingAccounts =
-      await opportunitiesPage.getMatchingAccounts();
+Then(
+  "User should see matching accounts displayed",
+  async ({ opportunitiesPage }) => {
+    const matchingAccounts = await opportunitiesPage.getMatchingAccounts();
 
     await expect(matchingAccounts.first()).toBeVisible();
-});
-
-
+  },
+);

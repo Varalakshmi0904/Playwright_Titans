@@ -5,14 +5,6 @@ import {logger } from "../utils/logger.js";
 
 const { Given, When, Then } = createBdd(test);
 
-// Given('User is logged into the SuiteCRM Dashboard page', async ({loginPage, excelReader}) => {
-//      await loginPage.goto();
-//      const loginData = excelReader.getExcelData("login", "ValidCredentials");
-//     await loginPage.enterCredentials(loginData.username, loginData.password);
-//   // Step: Given the user is logged in
-//   logger.info('User is logged into the SuiteCRM Dashboard page');
-//   // From: features\contacts.feature:5:3
-// });
 
 
 Given('User is on the Create Contact page', async ({contactPage}) => {

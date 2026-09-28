@@ -1,13 +1,22 @@
 import { test as base } from "playwright-bdd";
 import { LoginPage } from "../pages/LoginPage.js";
 import { ExcelReader } from "../utils/ExcelReader.js";
+import { OpportunitiesPage } from "../pages/OpportunitiesPage.js";
+import { ContactPage } from "../pages/ContactPage.js";
 
+export const test = base.extend({
+  loginPage: async ({ page }, use) => {
+    await use(new LoginPage(page));
+  },
 
-export const test = base.extend({loginPage: async ({ page }, use) => {
-  await use(new LoginPage(page));
-},
-
-excelReader: async ({}, use) => {
+  excelReader: async ({}, use) => {
     await use(new ExcelReader(process.env.EXCEL_PATH));
+  },
+
+  opportunitiesPage: async ({ page }, use) => {
+    await use(new OpportunitiesPage(page));
+  },
+  contactPage: async ({ page }, use) => {
+    await use(new ContactPage(page));
   },
 });
