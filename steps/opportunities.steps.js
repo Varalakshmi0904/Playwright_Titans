@@ -1,27 +1,35 @@
 import { createBdd } from "playwright-bdd";
 import { expect } from "@playwright/test";
 import { test } from "../fixtures/fixtures.js";
+import { logger } from "../utils/logger.js";
+
 const { Given, When, Then } = createBdd(test);
 
 When("User hovers over Opportunities", async ({ opportunitiesPage }) => {
+  logger.info("Hovering over Opportunities menu");
+
   await opportunitiesPage.hoverOpportunitiesMenu();
+  logger.info("Hovered over Opportunities menu successfully");
 });
 
 Then(
   "User should see the Opportunities dropdown menu",
   async ({ opportunitiesPage }) => {
     await expect(await opportunitiesPage.isDropdownMenuVisible()).toBe(true);
+    logger.info("Opportunities dropdown menu is visible");
   },
 );
 
 When("User clicks Create Opportunity", async ({ opportunitiesPage }) => {
   await opportunitiesPage.clickCreateOpportunity();
+  logger.info("Create Opportunity clicked successfully");
 });
 
 Then(
   "User should be redirected to the Create Opportunity page",
   async ({ opportunitiesPage }) => {
     await expect(opportunitiesPage.pageTitle).toBeVisible();
+    logger.info("Create Opportunity page is displayed successfully");
   },
 );
 
@@ -29,6 +37,7 @@ Given(
   "User is on the Create Opportunity page",
   async ({ opportunitiesPage }) => {
     await opportunitiesPage.clickCreateOpportunity();
+    logger.info("Create Opportunity page opened");
   },
 );
 
@@ -38,6 +47,7 @@ When(
     await expect(opportunitiesPage.page).toHaveURL(
       "https://suite8demo.suiteondemand.com/#/opportunities/edit?return_module=Opportunities&return_action=DetailView",
     );
+    logger.info("Create Opportunity page URL verified successfully");
   },
 );
 Then(
@@ -45,6 +55,7 @@ Then(
   async ({ opportunitiesPage }, arg) => {
     const label = await opportunitiesPage.getMandatoryFieldLabel(arg);
     await expect(label).toContainText("*");
+    logger.info(`Mandatory indicator verified for field: ${arg}`);
   },
 );
 When(
@@ -62,6 +73,7 @@ When(
       salesStage: opportunitiesData.SalesStage,
       closeDate: opportunitiesData.ExpectedCloseDate,
     });
+    logger.info("Mandatory fields entered and Save clicked successfully");
   },
 );
 
@@ -152,6 +164,7 @@ Then(
     await expect(opportunitiesPage.expectedCloseDateInput).toHaveValue(
       data.ExpectedCloseDate,
     );
+    logger.info("Selected date verified successfully");
   },
 );
 
@@ -161,6 +174,7 @@ When(
     const data = excelReader.getExcelData("opportunities", "AccountSearch");
 
     await opportunitiesPage.searchAccount(data.AccountName);
+    logger.info("Partial account name entered successfully");
   },
 );
 
@@ -170,5 +184,6 @@ Then(
     const matchingAccounts = await opportunitiesPage.getMatchingAccounts();
 
     await expect(matchingAccounts.first()).toBeVisible();
+    logger.info("Matching accounts displayed successfully");
   },
 );
