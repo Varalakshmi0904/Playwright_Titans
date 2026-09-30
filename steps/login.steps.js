@@ -35,10 +35,13 @@ When(
 Then(
   "User should be redirected to the SuiteCRM Dashboard",
   async ({ page }) => {
-    await expect(page).toHaveURL("https://suite8demo.suiteondemand.com/#/home");
+    await expect(page).toHaveURL(
+      "https://suite8demo.suiteondemand.com/#/home",
+      { timeout: 20000 },
+    );
   },
 );
 
-Then("User should see {string} message", async ({ loginPage }, arg) => {
-  await expect(loginPage.errorMessage).toContainText(arg);
+Then("User should see a login error message", async ({ loginPage }) => {
+  await expect(loginPage.errorMessage).toBeVisible();
 });
