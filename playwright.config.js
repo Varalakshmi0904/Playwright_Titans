@@ -10,10 +10,12 @@ const testDir = defineBddConfig({
     "./features/contacts.feature",
     "./features/opportunities.feature",
     "./features/leads.feature",
+     "./features/contacts.feature",
+     "./features/opportunities.feature",
   ],
   steps: [
     "./steps/login.steps.js",
-    "./steps/contacts.steps.js",
+     "./steps/contacts.steps.js",
     "./steps/opportunities.steps.js",
     "./steps/leads.steps.js",
     "./fixtures/fixtures.js",
@@ -35,6 +37,7 @@ const testDir = defineBddConfig({
  */
 export default defineConfig({
   testDir,
+  outputDir: "./screenshots",
   //testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -50,6 +53,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     baseURL: process.env.BASE_URL,
+    screenshot: "only-on-failure",
 
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',

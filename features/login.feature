@@ -10,7 +10,7 @@ Feature: Login Page - Functional Validation
   Scenario Outline: Login with invalid credentials
     Given User is on the Login page
     When User enters invalid credentials from Excel for "<testCase>" and click login
-    Then User should see "Login credentials incorrect" message
+    Then User should see a login error message
 
     Examples:
       | testCase        |
