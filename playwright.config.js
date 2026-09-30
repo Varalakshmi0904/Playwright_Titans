@@ -7,6 +7,9 @@ dotenv.config();
 const testDir = defineBddConfig({
   features: [
     "./features/login.feature",
+    "./features/contacts.feature",
+    "./features/opportunities.feature",
+    "./features/leads.feature",
      "./features/contacts.feature",
      "./features/opportunities.feature",
   ],
@@ -14,6 +17,7 @@ const testDir = defineBddConfig({
     "./steps/login.steps.js",
      "./steps/contacts.steps.js",
     "./steps/opportunities.steps.js",
+    "./steps/leads.steps.js",
     "./fixtures/fixtures.js",
   ],
 });
