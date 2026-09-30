@@ -5,6 +5,7 @@ export class OpportunitiesPage {
     this.opportunitiesHoverOver = page
       .locator("a")
       .filter({ hasText: /^Opportunities$/ });
+    this.loadingSpinner = page.locator("app-full-page-spinner");
 
     this.createOpportunityDropdown = page.getByRole("link", {
       name: "Create Opportunity",
@@ -90,10 +91,11 @@ export class OpportunitiesPage {
     );
   }
 
-  async clickCreateOpportunity() {
-    await this.opportunitiesHoverOver.hover();
-    await this.createOpportunityDropdown.click();
-  }
+ async clickCreateOpportunity() {
+  await this.loadingSpinner.waitFor({ state: "hidden", timeout: 20000 });
+  await this.opportunitiesHoverOver.hover();
+  await this.createOpportunityDropdown.click();
+}
 
   async clickViewOpportunities() {
     await this.viewOpportunitiesDropdown.click();
@@ -106,7 +108,7 @@ export class OpportunitiesPage {
   async getMandatoryFieldLabel(fieldName) {
     return this.mandatoryField[fieldName];
   }
-async fillAllMandatoryFieldsAndSave({
+  async fillAllMandatoryFieldsAndSave({
     opportunityName,
     accountName,
     opportunityAmount,
@@ -151,15 +153,12 @@ async fillAllMandatoryFieldsAndSave({
     await this.calendarIcon.click();
     await this.expectedCloseDateInput.fill(closeDate);
   }
-async searchAccount(partialAccountName) {
-  await this.accountNameInput.click();
-  await this.accountSearchBox.fill(partialAccountName);
-}
+  async searchAccount(partialAccountName) {
+    await this.accountNameInput.click();
+    await this.accountSearchBox.fill(partialAccountName);
+  }
 
   async getMatchingAccounts() {
     return this.accountDropdownPanel.getByRole("option");
   }
-
-
-  
 }

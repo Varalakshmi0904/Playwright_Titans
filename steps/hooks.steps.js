@@ -5,7 +5,7 @@ const { After } = createBdd(test);
 
 After(async ({ page }) => {
   await page.screenshot({
-    path: "screenshots/after-scenario.png",
+    path: "screenshots/failed.png",
     fullPage: true,
   });
 });

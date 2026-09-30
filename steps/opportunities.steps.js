@@ -10,7 +10,7 @@ When("User hovers over Opportunities", async ({ opportunitiesPage }) => {
 Then(
   "User should see the Opportunities dropdown menu",
   async ({ opportunitiesPage }) => {
-    await opportunitiesPage.isDropdownMenuVisible();
+    await expect(await opportunitiesPage.isDropdownMenuVisible()).toBe(true);
   },
 );
 
@@ -35,10 +35,11 @@ Given(
 When(
   "User views the Create Opportunity page",
   async ({ opportunitiesPage }) => {
-    await expect(opportunitiesPage.pageTitle).toBeVisible();
+    await expect(opportunitiesPage.page).toHaveURL(
+      "https://suite8demo.suiteondemand.com/#/opportunities/edit?return_module=Opportunities&return_action=DetailView",
+    );
   },
 );
-
 Then(
   "User should see a mandatory indicator next to {string}",
   async ({ opportunitiesPage }, arg) => {
