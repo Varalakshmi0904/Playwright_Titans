@@ -3,6 +3,7 @@ import { LoginPage } from "../pages/LoginPage.js";
 import { ExcelReader } from "../utils/ExcelReader.js";
 import { OpportunitiesPage } from "../pages/OpportunitiesPage.js";
 import { ContactPage } from "../pages/ContactPage.js";
+import { LeadsPage } from "../pages/LeadsPage.js";
 
 export const test = base.extend({
   loginPage: async ({ page }, use) => {
@@ -18,5 +19,8 @@ export const test = base.extend({
   },
   contactPage: async ({ page }, use) => {
     await use(new ContactPage(page));
+  },
+  leadsPage: async ({ page }, use) => {
+    await use(new LeadsPage(page));
   },
 });

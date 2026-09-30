@@ -9,11 +9,13 @@ const testDir = defineBddConfig({
     "./features/login.feature",
     "./features/contacts.feature",
     "./features/opportunities.feature",
+    "./features/leads.feature",
   ],
   steps: [
     "./steps/login.steps.js",
     "./steps/contacts.steps.js",
     "./steps/opportunities.steps.js",
+    "./steps/leads.steps.js",
     "./fixtures/fixtures.js",
   ],
 });

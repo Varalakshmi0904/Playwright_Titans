@@ -1,4 +1,6 @@
-class LeadsPage {
+import { expect } from "@playwright/test";
+
+export class LeadsPage {
 
     constructor(page) {
         this.page = page;
@@ -13,18 +15,18 @@ class LeadsPage {
         this.jobTitle = page.getByRole('textbox').nth(3);
         this.mobile = page.getByRole('textbox').nth(4);
         this.department = page.getByRole('textbox').nth(5);
-        
+
         this.officePhone = page.getByRole('textbox').nth(6);
         this.accountName = page.getByRole('textbox').nth(7);
         this.website = page.getByRole('textbox').nth(8);
+
         this.primaryAddressStreet = page.getByRole('textbox').nth(9);
         this.primaryAddressPostalcode = page.getByRole('textbox').nth(10);
-        
+
         this.emailAddress = page.getByLabel('Email Address');
         this.primaryEmail = page.getByLabel('Primary');
         this.optOut = page.getByLabel('Opt Out');
         this.invalidEmail = page.getByLabel('Invalid');
-
 
         this.primaryAddressCity = page.getByRole('textbox').nth(11);
         this.primaryAddressState = page.getByRole('textbox').nth(12);
@@ -55,27 +57,27 @@ class LeadsPage {
     }
 
     async enterFName(firstName) {
-        await this.firstName.fill(firstName);
-
+        await this.firstName.fill(String(firstName));
     }
-    async enterLName(lastName){
-        await this.lastName.fill(lastName);
+
+    async enterLName(lastName) {
+        await this.lastName.fill(String(lastName));
     }
 
     async enterJobDetails(jobTitle, department, accountName) {
-        await this.jobTitle.fill(jobTitle);
-        await this.department.fill(department);
-        await this.accountName.fill(accountName);
+        await this.jobTitle.fill(String(jobTitle));
+        await this.department.fill(String(department));
+        await this.accountName.fill(String(accountName));
     }
 
     async enterContactDetails(mobile, officePhone, website) {
-        await this.mobile.fill(mobile);
-        await this.officePhone.fill(officePhone);
-        await this.website.fill(website);
+        await this.mobile.fill(String(mobile));
+        await this.officePhone.fill(String(officePhone));
+        await this.website.fill(String(website));
     }
 
     async enterEmail(email) {
-        await this.emailAddress.fill(email);
+        await this.emailAddress.fill(String(email));
     }
 
     async selectPrimaryEmail() {
@@ -91,33 +93,30 @@ class LeadsPage {
     }
 
     async enterPrimaryAddress(street, postalcode, city, state, country) {
-        await this.primaryAddressStreet.fill(street);
-        await this.primaryAddressPostalcode.fill(postalcode);
-        await this.primaryAddressCity.fill(city);
-        await this.primaryAddressState.fill(state);
-        await this.primaryAddressCountry.fill(country);
+        await this.primaryAddressStreet.fill(String(street));
+        await this.primaryAddressPostalcode.fill(String(postalcode));
+        await this.primaryAddressCity.fill(String(city));
+        await this.primaryAddressState.fill(String(state));
+        await this.primaryAddressCountry.fill(String(country));
     }
 
     async enterAlternateAddress(street, postalcode, city, state, country) {
-        await this.altAddressStreet.fill(street);
-        await this.altAddressPostalcode.fill(postalcode);
-        await this.altAddressCity.fill(city);
-        await this.altAddressState.fill(state);
-        await this.altAddressCountry.fill(country);
+        await this.altAddressStreet.fill(String(street));
+        await this.altAddressPostalcode.fill(String(postalcode));
+        await this.altAddressCity.fill(String(city));
+        await this.altAddressState.fill(String(state));
+        await this.altAddressCountry.fill(String(country));
     }
 
     async enterDescription(description) {
-        await this.description.fill(description);
+        await this.description.fill(String(description));
     }
 
     async saveLead() {
         await this.saveButton.click();
-       
     }
 
     async cancelLead() {
         await this.cancelButton.click();
     }
 }
-
-module.exports = { LeadsPage };

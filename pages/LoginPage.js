@@ -10,6 +10,7 @@ export class LoginPage{
         this.errorMessage=page.getByText('Login credentials incorrect')
 }
 async goto() {
+    
         await this.page.goto('/#/Login');
     
 }

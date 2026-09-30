@@ -1,97 +1,82 @@
-const { Given, When, Then } = require("@cucumber/cucumber");
-const { LeadsPage } = require("../pages/LeadsPage");
-const { AccountsPage } = require("../pages/AccountsPage");
-const { ExcelReader } = require("../utils/ExcelReader");
-const { expect } = require("playwright/test");
+import { createBdd } from "playwright-bdd";
+import { expect } from "@playwright/test";
+import { test } from "../fixtures/fixtures.js";
+import {logger } from "../utils/logger.js";
 
-const excelReader = new ExcelReader("./utils/TestData.xlsx");
+const { Given, When, Then } = createBdd(test);
 
-Given("User is logged in to SuiteCRM", async function () {
-  this.leadsPage = new LeadsPage(this.page);
-  this.accountsPage = new AccountsPage(this.page);
-});
+Given("User is on the Create Lead page", async ({ leadsPage }) => {
+    await leadsPage.hoverOverLeadsMenu();
+    await leadsPage.openCreateLead();
 
-When("User logs in using Excel test data {string}", async function (testCase) {
-  const data = excelReader.getTestData("LoginData", testCase);
-
-  await this.loginPage.login(data.username, data.password);
+    logger.info("User is on the Create Lead page");
 });
 
 When(
-  "User creates a new lead using Excel test data {string}",
-  { timeout: 50000 },
-  async function (testCase) {
-    const data = excelReader.getTestData("LeadsData", testCase);
-    //console.log(data);
+    "User creates a new lead using Excel test data {string}",
+    async ({ leadsPage, excelReader }, testCase) => {
 
-    await this.leadsPage.hoverOverLeadsMenu();
-    await this.leadsPage.openCreateLead();
+        const data = excelReader.getTestData("LeadsData", testCase);
 
-    //await this.leadsPage.enterFName(data.firstName);
-    await this.leadsPage.enterLName(data.lastName);
+        await leadsPage.enterFName(data.firstName);
+        await leadsPage.enterLName(data.lastName);
 
-    await this.leadsPage.saveLead();
-    await this.page.waitForTimeout(10000);
-  }
+        await leadsPage.enterJobDetails(
+            data.jobTitle,
+            data.department,
+            data.accountName
+        );
+
+        await leadsPage.enterContactDetails(
+            data.mobile,
+            data.officePhone,
+            data.website
+        );
+
+        await leadsPage.enterEmail(data.email);
+
+        await leadsPage.enterPrimaryAddress(
+            data.primaryStreet,
+            data.primaryPostalcode,
+            data.primaryCity,
+            data.primaryState,
+            data.primaryCountry
+        );
+
+        await leadsPage.enterAlternateAddress(
+            data.altStreet,
+            data.altPostalcode,
+            data.altCity,
+            data.altState,
+            data.altCountry
+        );
+
+        await leadsPage.enterDescription(data.description);
+
+        await leadsPage.saveLead();
+
+        logger.info(
+            `Lead creation completed using Excel test data: ${testCase}`
+        );
+    }
 );
 
-// When("User creates a new lead", { timeout: 50000 }, async function () {
-//   const data = excelReader.getTestData("LeadsData", "TC001");
-
-//   await this.leadsPage.openLeadsMenu();
-
-//   await this.leadsPage.openCreateLead();
-
-//   await this.leadsPage.selectTitle(data.title);
-
-//   await this.leadsPage.enterName(data.firstName, data.lastName);
-
-//   await this.leadsPage.enterJobDetails(
-//     data.jobTitle,
-//     data.department,
-//     data.accountName
-//   );
-
-//   await this.leadsPage.enterContactDetails(
-//     data.mobile,
-//     data.officePhone,
-//     data.website
-//   );
-
-//   await this.leadsPage.enterEmail(data.email);
-
-//   await this.leadsPage.enterPrimaryAddress(
-//     data.primaryStreet,
-//     data.primaryPostalcode,
-//     data.primaryCity,
-//     data.primaryState,
-//     data.primaryCountry
-//   );
-
-//   await this.leadsPage.enterAlternateAddress(
-//     data.altStreet,
-//     data.altPostalcode,
-//     data.altCity,
-//     data.altState,
-//     data.altCountry
-//   );
-
-//   await this.leadsPage.enterDescription(data.description);
-
-//   await this.leadsPage.saveLead();
-// });
-
 Then(
-  "Lead should be created successfully using Excel test data {string}",
-  async function (testCase) {
-    const data = excelReader.getTestData("LeadsData", testCase);
+    "Lead should be created successfully using Excel test data {string}",
+    async ({ page, excelReader }, testCase) => {
 
-    await expect(
-      this.page.getByRole('tabpanel', { name: 'OVERVIEW' })
-          .getByText(data.lastName, { exact: true })
-  ).toBeVisible({ timeout: 20000 });
+        const data = excelReader.getTestData("LeadsData", testCase);
 
+        await expect(
+            page
+                .getByRole("tabpanel", { name: "OVERVIEW" })
+                .getByText(data.lastName, { exact: true })
+        ).toBeVisible({
+            timeout: 30000
+        });
 
-    console.log(`Lead created successfully for Last Name: ${data.lastName}`);
-  }
+        logger.info(
+            `Lead creation test case: ${testCase} passed successfully`
+        );
+    }
 );
