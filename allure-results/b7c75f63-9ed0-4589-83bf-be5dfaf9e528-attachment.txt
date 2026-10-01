@@ -1,1 +1,0 @@
-After click URL: https://suite8demo.suiteondemand.com/#/opportunities/edit?return_module=Opportunities&return_action=DetailView
