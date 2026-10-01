@@ -13,10 +13,11 @@ Given("User is on the Create Lead page", async ({ leadsPage }) => {
 });
 
 When(
-    "User creates a new lead using Excel test data {string}",
-    async ({ leadsPage, excelReader }, testCase) => {
-
-        const data = excelReader.getExcelData("LeadsData", testCase);
+  "User creates a new lead using Excel test data {string}",
+  { timeout: 50000 },
+  async function (testCase) {
+    const data = excelReader.getTestData("LeadsData", testCase);
+    //console.log(data);
 
         await leadsPage.enterFName(data.firstName);
         await leadsPage.enterLName(data.lastName);
@@ -33,25 +34,25 @@ When(
             data.website
         );
 
-        // await leadsPage.enterEmail(data.email);
+//   await this.leadsPage.enterEmail(data.email);
 
-        // await leadsPage.enterPrimaryAddress(
-        //     data.primaryStreet,
-        //     data.primaryPostalcode,
-        //     data.primaryCity,
-        //     data.primaryState,
-        //     data.primaryCountry
-        // );
+//   await this.leadsPage.enterPrimaryAddress(
+//     data.primaryStreet,
+//     data.primaryPostalcode,
+//     data.primaryCity,
+//     data.primaryState,
+//     data.primaryCountry
+//   );
 
-        // await leadsPage.enterAlternateAddress(
-        //     data.altStreet,
-        //     data.altPostalcode,
-        //     data.altCity,
-        //     data.altState,
-        //     data.altCountry
-        // );
+//   await this.leadsPage.enterAlternateAddress(
+//     data.altStreet,
+//     data.altPostalcode,
+//     data.altCity,
+//     data.altState,
+//     data.altCountry
+//   );
 
-        // await leadsPage.enterDescription(data.description);
+//   await this.leadsPage.enterDescription(data.description);
 
         await leadsPage.saveLead();
 
@@ -62,10 +63,9 @@ When(
 );
 
 Then(
-    "Lead should be created successfully using Excel test data {string}",
-    async ({ page, excelReader }, testCase) => {
-
-        const data = excelReader.getExcelData("LeadsData", testCase);
+  "Lead should be created successfully using Excel test data {string}",
+  async function (testCase) {
+    const data = excelReader.getTestData("LeadsData", testCase);
 
         await expect(
             page

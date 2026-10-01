@@ -8,17 +8,13 @@ const testDir = defineBddConfig({
   features: [
     "./features/login.feature",
     "./features/contacts.feature",
-    // "./features/opportunities.feature",
-    // "./features/leads.feature",
-    //  "./features/contacts.feature",
-    //  "./features/opportunities.feature",
+    "./features/opportunities.feature",
   ],
-
   steps: [
     "./steps/login.steps.js",
      "./steps/contacts.steps.js",
-    // "./steps/opportunities.steps.js",
-    // "./steps/leads.steps.js",
+    "./steps/opportunities.steps.js",
+    "./steps/leads.steps.js",
     "./fixtures/fixtures.js",
   ],
 });
@@ -70,15 +66,15 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
 
-    // {
-    //   name: "firefox",
-    //   use: { ...devices["Desktop Firefox"] },
-    // },
+    {
+      name: "firefox",
+      use: { ...devices["Desktop Firefox"] },
+    },
 
-    // {
-    //   name: "webkit",
-    //   use: { ...devices["Desktop Safari"] },
-    // },
+    {
+      name: "webkit",
+      use: { ...devices["Desktop Safari"] },
+    },
 
     /* Test against mobile viewports. */
     // {
