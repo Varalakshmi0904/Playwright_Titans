@@ -39,23 +39,36 @@ export class ContactPage{
         this.cancel=page.getByRole('button', { name: 'Cancel' });
 
         this.visibleContact=page.getByRole('tab', { name: 'OVERVIEW' });
+
+        this.validationMessage=page.getByText('Missing required field: Last');
 }
 
- async addContact() {
-    await this.contact.hover();
-    await this.createContact.click();
-   
- }
- 
- async enterLastName(lastName) {
-     
-    await this.lastName.fill(lastName);
-        await this.save.click();
- }
+async hoverOverContact() {
+   await this.contact.hover();
+      }
 
- async visibleContact() {
-     
-    await expect(this.visibleContact).toBeVisible();
- }
+   async addContact() {
+      await this.createContact.click();
+   }
+
+// async addContact() {
+//    await this.contact.hover();
+//    await this.createContact.click();
+//    }
+
+async enterLastName(lastName) {
+   await this.lastName.fill(lastName);
+   }
+
+async visibleContact() {
+   await expect(this.visibleContact).toBeVisible();
+   }
+
+ async contactSave(){
+   await this.save.click();
+   }
+
+   
+   
 
 }
