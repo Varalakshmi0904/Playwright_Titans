@@ -1,14 +1,17 @@
 export class DocumentPage {
     constructor(page) {
         this.page = page;
-        this.createDocumentButton = page.getByRole('button', { name: 'Create Document' });
-        this.fileUploadInput = page.getByText('Upload Click or drag a file');
+        this.DocumentMenu = page.locator('a').filter({ hasText: /^Documents$/ })
+        this.createDocument = page.getByRole('link', { name: 'Create Document' });
+        this.File = page.getByText('FILE', { exact: true });
+        //this.fileUploadInput = page.getByText('Upload Click or drag a file');
+        this.fileUploadInput = page.locator('input[type="file"]');
         this.documentName = page.getByRole('textbox').nth(1);
         this.revision = page.getByRole('textbox').nth(2);
         this.documentType = page.locator('scrm-dropdownenum-edit').filter({ hasText: 'Mail Merge EULA NDA License' }).getByRole('combobox');
         this.template = page.locator('.checkmark');
-        this.publishdate = page.getByRole('textbox', { name: 'yyyy-mm-dd' }).first();
-        this.expirationdate = page.getByRole('textbox', { name: 'yyyy-mm-dd' }).nth(1);
+        this.publishDate = page.getByRole('textbox', { name: 'yyyy-mm-dd' }).first();
+        this.expirationDate = page.getByRole('textbox', { name: 'yyyy-mm-dd' }).nth(1);
         this.category = page.locator('scrm-dropdownenum-edit').filter({ hasText: 'Marketing Knowledge Base Sales' }).getByRole('combobox');
         this.subcategory = page.locator('scrm-dropdownenum-edit').filter({ hasText: 'Marketing Collateral Product' }).getByRole('combobox');
         this.assignedto = page.getByRole('combobox', { name: 'WillWestin' });
@@ -17,11 +20,11 @@ export class DocumentPage {
         this.other = page.getByRole('tab', { name: 'OTHER' });
         this.datecreated = page.getByText('DATE CREATED');
         this.datemodified = page.getByText('DATE MODIFIED');
-        this.savebutton = page.getByRole('button', { name: 'Save' });
-        this.cancelbutton = page.getByRole('button', { name: 'Cancel' });
-        this.viewdocuments = page.getByRole('link', { name: 'View Documents' });
+        this.saveButton = page.getByRole('button', { name: 'Save' });
+        this.cancelButton = page.getByRole('button', { name: 'Cancel' });
+        this.viewDocuments = page.getByRole('link', { name: 'View Documents' });
         this.checkbox = page.locator('scrm-table-header').getByLabel('Select Action Menu');
-        this.bulkactions = page.locator('scrm-table-header').getByLabel('Bulk Actions');
+        this.bulkActions = page.locator('scrm-table-header').getByLabel('Bulk Actions');
         this.file = page.getByText('File', { exact: true });
         this.category = page.getByText('Category', { exact: true });
         this.subcategory = page.getByRole('columnheader', { name: 'Sub Category' });
@@ -47,16 +50,30 @@ export class DocumentPage {
         this.modified = page.getByText('Modified by');
         this.closebutton = page.getByRole('button').filter({ hasText: '×' });
         this.filterbutton = page.getByRole('button', { name: 'Filter' });
+        this.documentrevision = page.getByLabel('Revision');
 
     }
+
+    async hoverOverDocumentMenu() {
+        await this.DocumentMenu.hover();
+    }
+
    
     async clickCreateDocument() 
     { 
-        await this.createDocumentButton.click();
+      await this.createDocument.waitFor({state: 'visible'});
+        await this.createDocument.click();
      } 
+
+     async uploadDocument(file) 
+    { 
+        await this.fileUploadInput.click();
+        await this.page.setInputFiles('input[type="file"]', file);
+     } 
+
     async enterDocumentName(name) 
     { 
-        await this.documentName.fill(name);
+        await this.documentName.fill(String(name));
      } 
     async enterRevision(revision) 
     { 
@@ -77,7 +94,7 @@ export class DocumentPage {
             } 
         async enterExpirationDate(date) 
         { 
-            await this.expirationDateInput.fill(date); 
+            await this.expirationDate.fill(date); 
         } 
         async selectCategory(category)
          { 
@@ -166,7 +183,9 @@ export class DocumentPage {
              async verifyUserColumnVisible() { 
                 await expect(this.userColumn).toBeVisible();
              }
-             
+             async verifyDocumentCreated() {
+               await expect(this.documentrevision).toBeVisible();
+             }
              
              
             }
