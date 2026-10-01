@@ -7,17 +7,18 @@ dotenv.config();
 const testDir = defineBddConfig({
   features: [
     "./features/login.feature",
-    "./features/contacts.feature",
-    "./features/opportunities.feature",
-    "./features/leads.feature",
-     "./features/contacts.feature",
-     "./features/opportunities.feature",
+    // "./features/contacts.feature",
+    // "./features/opportunities.feature",
+    // "./features/leads.feature",
+    "./features/documents.feature",
   ],
+
   steps: [
     "./steps/login.steps.js",
-     "./steps/contacts.steps.js",
-    "./steps/opportunities.steps.js",
-    "./steps/leads.steps.js",
+    //  "./steps/contacts.steps.js",
+    // "./steps/opportunities.steps.js",
+    // "./steps/leads.steps.js",
+    "./steps/documents.steps.js",
     "./fixtures/fixtures.js",
   ],
 });

@@ -1,0 +1,55 @@
+2026-10-01T04:42:51.465Z [info]: User is on the Create Document page
+2026-10-01T04:42:55.496Z [info]: User clicks the save button entering all valid details
+Documents
+Accounts
+Contacts
+Opportunities
+Leads
+Quotes
+Calendar
+More 
+There are validation errors, unable to perform action.
+×
+Create
+SaveCancel
+OVERVIEW
+OTHER
+*
+FILE
+Book1.xlsx
+(8.93 KB)
+Missing required field: File
+STATUS
+Active
+Draft
+FAQ
+Expired
+Under Review
+Pending
+*
+DOCUMENT NAME
+Missing required field: Document Name
+*
+REVISION
+DOCUMENT TYPE
+Mail Merge
+EULA
+NDA
+License Agreement
+TEMPLATE?
+*
+PUBLISH DATE
+EXPIRATION DATE
+CATEGORY
+Marketing
+Knowledge Base
+Sales
+SUB CATEGORY
+Marketing Collateral
+Product Brochures
+FAQ
+ASSIGNED TO
+WillWestin
+	
+© Supercharged by SuiteCRM © Powered By SugarCRM
+BACK TO TOP 
