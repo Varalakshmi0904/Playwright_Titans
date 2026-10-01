@@ -1,3 +1,0 @@
-2026-10-01T13:34:38.552Z [info]: User is on the Create Contact page
-2026-10-01T13:34:40.462Z [info]: User clicked the save button with valid contact details
-2026-10-01T13:34:40.474Z [info]: User should see the Contact created successfully

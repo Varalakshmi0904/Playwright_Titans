@@ -1,3 +1,0 @@
-2026-10-01T12:48:37.824Z [info]: User is on the Create Contact page
-2026-10-01T12:48:43.472Z [info]: User clicks the save button with mandatory fields empty
-2026-10-01T12:48:49.968Z [info]: User should see validation messages for the mandatory fields
