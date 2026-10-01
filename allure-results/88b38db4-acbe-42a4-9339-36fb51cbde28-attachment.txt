@@ -1,0 +1,3 @@
+2026-10-01T13:34:38.606Z [info]: User is on the Create Contact page
+2026-10-01T13:34:40.534Z [info]: User clicks the save button with an invalid email
+2026-10-01T13:34:40.561Z [info]: User should see email validation message

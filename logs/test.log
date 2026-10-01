@@ -101,3 +101,23 @@
 2026-10-01T03:37:22.238Z [info]: User is on the Create Contact page
 2026-10-01T03:37:28.725Z [info]: User clicks the save button with mandatory fields empty
 2026-10-01T03:37:37.640Z [info]: User should see validation messages for the mandatory fields
+2026-10-01T12:48:05.009Z [info]: User is on the Create Contact page
+2026-10-01T12:48:10.755Z [info]: User clicked the save button with valid contact details
+2026-10-01T12:48:16.676Z [info]: User should see the Contact created successfully
+2026-10-01T12:48:37.824Z [info]: User is on the Create Contact page
+2026-10-01T12:48:43.472Z [info]: User clicks the save button with mandatory fields empty
+2026-10-01T12:48:49.968Z [info]: User should see validation messages for the mandatory fields
+2026-10-01T13:32:19.329Z [info]: User is on the Create Contact page
+2026-10-01T13:32:20.443Z [info]: User is on the Create Contact page
+2026-10-01T13:32:24.939Z [info]: User clicked the save button with valid contact details
+2026-10-01T13:32:24.969Z [info]: User should see the Contact created successfully
+2026-10-01T13:33:21.283Z [info]: User is on the Create Contact page
+2026-10-01T13:33:21.920Z [info]: User is on the Create Contact page
+2026-10-01T13:33:23.169Z [info]: User clicked the save button with valid contact details
+2026-10-01T13:33:23.189Z [info]: User should see the Contact created successfully
+2026-10-01T13:34:38.552Z [info]: User is on the Create Contact page
+2026-10-01T13:34:38.606Z [info]: User is on the Create Contact page
+2026-10-01T13:34:40.462Z [info]: User clicked the save button with valid contact details
+2026-10-01T13:34:40.474Z [info]: User should see the Contact created successfully
+2026-10-01T13:34:40.534Z [info]: User clicks the save button with an invalid email
+2026-10-01T13:34:40.561Z [info]: User should see email validation message

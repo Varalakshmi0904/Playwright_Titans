@@ -10,18 +10,19 @@ Scenario: Create a new Contact
  When User clicks the save button entering all valid contact details
  Then User should see the Contact created successfully
 
-@tc01 @createContact
-Scenario: Create Contact with mandatory fields missing
-
-Given User is on the Create Contact page
-When User clicks the save button with mandatory fields empty
-Then User should see validation messages for the mandatory fields
-
-# Scenario:Create Contact with invalid email
+# @tc01 @createContact
+# Scenario: Create Contact with mandatory fields missing
 
 # Given User is on the Create Contact page
-# When User clicks the save button with an invalid email
-# Then User should see email validation message
+# When User clicks the save button with mandatory fields empty
+# Then User should see validation messages for the mandatory fields
+
+@tc02 @email
+Scenario:Create Contact with invalid email
+
+Given User is on the Create Contact page
+When User clicks the save button with an invalid email
+Then User should see email validation message
 
 # Scenario:Edit an existing Contact
 

@@ -17,7 +17,7 @@ export class ContactPage{
         this.email=page.locator('.dynamic-field.dynamic-field-mode-edit.dynamic-field-name-email_address > div > .d-flex > .flex-grow-1 > .form-control');
         this.primary=page.locator('.checkmark').first();
         this.optOut=page.locator('.dynamic-field.dynamic-field-mode-edit.dynamic-field-name-opt_out > div > .d-flex > .flex-grow-1 > .pb-4 > .checkbox-container > .checkmark');
-        this.invalid=page.locator('.dynamic-field.dynamic-field-mode-edit.dynamic-field-name-invalid_email > div > .d-flex > .flex-grow-1 > .pb-4 > .checkbox-container > .checkmark');
+        this.invalidEmail=page.locator('.dynamic-field.dynamic-field-mode-edit.dynamic-field-name-invalid_email > div > .d-flex > .flex-grow-1 > .pb-4 > .checkbox-container > .checkmark');
         this.emailRemove=page.locator('button').nth(5);
         this.emailAdd=page.locator('.line-item-buttons > scrm-button > .btn');
         
@@ -68,6 +68,9 @@ async visibleContact() {
    await this.save.click();
    }
 
+   async enterEmail(email) {
+   await this.email.fill("123emad");
+   }
    
    
 
