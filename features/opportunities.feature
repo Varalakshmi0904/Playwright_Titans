@@ -27,24 +27,24 @@ Feature: Opportunities Module
       | Sales Stage         |
       | Expected Close Date |
 
-  # @tc04 @create
-  # Scenario: Verify opportunity is created with all mandatory fields filled
-  #   Given User is on the Create Opportunity page
-  #   When User enters all mandatory fields and clicks Save
-  #   Then User should see the created Opportunity
+  @tc04 @create
+  Scenario: Verify opportunity is created with all mandatory fields filled
+    Given User is on the Create Opportunity page
+    When User enters all mandatory fields and clicks Save
+    Then User should see the created Opportunity
 
-  # @tc05 @create
-  # Scenario Outline: Verify validation when a mandatory field is left blank
-  #   Given User is on the Create Opportunity page
-  #   When User leaves "<field>" blank and clicks Save
-  #   Then User should see a required-field validation message for "<field>"
+  @tc05 @create
+  Scenario Outline: Verify validation when a mandatory field is left blank
+    Given User is on the Create Opportunity page
+    When User leaves "<field>" blank and clicks Save
+    Then User should see a required-field validation message for "<field>"
 
-  #   Examples:
-  #     | field               |
-  #     | Opportunity Name    |
-  #     | Account Name        |
-  #     | Sales Stage         |
-  #     | Expected Close Date |
+    Examples:
+      | field               |
+      | Opportunity Name    |
+      | Account Name        |
+      | Sales Stage         |
+      | Expected Close Date |
 
   # @tc06 @create
   # Scenario: Verify Opportunity Amount accepts only numeric input
