@@ -91,11 +91,11 @@ export class OpportunitiesPage {
     );
   }
 
- async clickCreateOpportunity() {
-  await this.loadingSpinner.waitFor({ state: "hidden", timeout: 20000 });
-  await this.opportunitiesHoverOver.hover();
-  await this.createOpportunityDropdown.click();
-}
+  async clickCreateOpportunity() {
+    await this.loadingSpinner.waitFor({ state: "hidden", timeout: 20000 });
+    await this.opportunitiesHoverOver.hover();
+    await this.createOpportunityDropdown.click();
+  }
 
   async clickViewOpportunities() {
     await this.viewOpportunitiesDropdown.click();
@@ -108,13 +108,13 @@ export class OpportunitiesPage {
   async getMandatoryFieldLabel(fieldName) {
     return this.mandatoryField[fieldName];
   }
-  async fillAllMandatoryFieldsAndSave({
-    opportunityName,
-    accountName,
-    opportunityAmount,
-    salesStage,
-    closeDate,
-  }) {
+ async fillAllMandatoryFieldsAndSave({
+  opportunityName,
+  accountName,
+  opportunityAmount,
+  salesStage,
+  closeDate,
+}) {
     if (opportunityName) {
       await this.opportunityNameInput.fill(opportunityName);
     }

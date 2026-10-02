@@ -1,3 +1,4 @@
+@leads
 Feature: SuiteCRM Leads
 
   Background:

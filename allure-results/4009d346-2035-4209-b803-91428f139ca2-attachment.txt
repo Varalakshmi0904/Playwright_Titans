@@ -1,6 +1,0 @@
-After Login URL: https://suite8demo.suiteondemand.com/#/Login
-Page text: Login credentials incorrect, please try again.
-×
-***
-Log In
-© Supercharged by SuiteCRM © Powered By SugarCRM

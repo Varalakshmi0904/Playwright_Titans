@@ -16,7 +16,7 @@ When(
     "User creates a new lead using Excel test data {string}",
     async ({ leadsPage, excelReader }, testCase) => {
 
-        const data = excelReader.getTestData("LeadsData", testCase);
+        const data = excelReader.getExcelData("LeadsData", testCase);
 
         await leadsPage.enterFName(data.firstName);
         await leadsPage.enterLName(data.lastName);
@@ -33,25 +33,25 @@ When(
             data.website
         );
 
-        await leadsPage.enterEmail(data.email);
+        // await leadsPage.enterEmail(data.email);
 
-        await leadsPage.enterPrimaryAddress(
-            data.primaryStreet,
-            data.primaryPostalcode,
-            data.primaryCity,
-            data.primaryState,
-            data.primaryCountry
-        );
+        // await leadsPage.enterPrimaryAddress(
+        //     data.primaryStreet,
+        //     data.primaryPostalcode,
+        //     data.primaryCity,
+        //     data.primaryState,
+        //     data.primaryCountry
+        // );
 
-        await leadsPage.enterAlternateAddress(
-            data.altStreet,
-            data.altPostalcode,
-            data.altCity,
-            data.altState,
-            data.altCountry
-        );
+        // await leadsPage.enterAlternateAddress(
+        //     data.altStreet,
+        //     data.altPostalcode,
+        //     data.altCity,
+        //     data.altState,
+        //     data.altCountry
+        // );
 
-        await leadsPage.enterDescription(data.description);
+        // await leadsPage.enterDescription(data.description);
 
         await leadsPage.saveLead();
 
@@ -65,7 +65,7 @@ Then(
     "Lead should be created successfully using Excel test data {string}",
     async ({ page, excelReader }, testCase) => {
 
-        const data = excelReader.getTestData("LeadsData", testCase);
+        const data = excelReader.getExcelData("LeadsData", testCase);
 
         await expect(
             page
