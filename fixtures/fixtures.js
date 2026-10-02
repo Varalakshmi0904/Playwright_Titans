@@ -26,4 +26,13 @@ export const test = base.extend({
   leadsPage: async ({ page }, use) => {
     await use(new LeadsPage(page));
   },
+  quotesPage: async ({ page }, use) => {
+    await use(new QuotesPage(page));
+  },
+  meetingsPage: async ({ page }, use) => {
+    await use(new MeetingsPage(page));
+  },
+  documentPage: async ({ page }, use) => {
+    await use(new DocumentPage(page));
+  }
 });
