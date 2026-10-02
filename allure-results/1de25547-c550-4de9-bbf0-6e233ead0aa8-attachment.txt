@@ -1,3 +1,0 @@
-Username: will1
-Password entered: YES
-After Login click: https://suite8demo.suiteondemand.com/#/Login
