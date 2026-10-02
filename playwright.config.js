@@ -7,18 +7,18 @@ dotenv.config();
 const testDir = defineBddConfig({
   features: [
     "./features/login.feature",
-    // "./features/contacts.feature",
-    // "./features/opportunities.feature",
-    // "./features/leads.feature",
-    "./features/documents.feature",
+    "./features/contacts.feature",
+    "./features/opportunities.feature",
+    "./features/leads.feature",
+       "./features/quotes.feature",
   ],
 
   steps: [
     "./steps/login.steps.js",
-    //  "./steps/contacts.steps.js",
-    // "./steps/opportunities.steps.js",
-    // "./steps/leads.steps.js",
-    "./steps/documents.steps.js",
+     "./steps/contacts.steps.js",
+    "./steps/opportunities.steps.js",
+    "./steps/leads.steps.js",
+    "./steps/quotes.steps.js",
     "./fixtures/fixtures.js",
   ],
 });
@@ -70,15 +70,15 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
 
-    {
-      name: "firefox",
-      use: { ...devices["Desktop Firefox"] },
-    },
+    // {
+    //   name: "firefox",
+    //   use: { ...devices["Desktop Firefox"] },
+    // },
 
-    {
-      name: "webkit",
-      use: { ...devices["Desktop Safari"] },
-    },
+    // {
+    //   name: "webkit",
+    //   use: { ...devices["Desktop Safari"] },
+    // },
 
     /* Test against mobile viewports. */
     // {

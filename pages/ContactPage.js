@@ -17,7 +17,7 @@ export class ContactPage{
         this.email=page.locator('.dynamic-field.dynamic-field-mode-edit.dynamic-field-name-email_address > div > .d-flex > .flex-grow-1 > .form-control');
         this.primary=page.locator('.checkmark').first();
         this.optOut=page.locator('.dynamic-field.dynamic-field-mode-edit.dynamic-field-name-opt_out > div > .d-flex > .flex-grow-1 > .pb-4 > .checkbox-container > .checkmark');
-        this.invalid=page.locator('.dynamic-field.dynamic-field-mode-edit.dynamic-field-name-invalid_email > div > .d-flex > .flex-grow-1 > .pb-4 > .checkbox-container > .checkmark');
+        this.invalidEmail=page.locator('.dynamic-field.dynamic-field-mode-edit.dynamic-field-name-invalid_email > div > .d-flex > .flex-grow-1 > .pb-4 > .checkbox-container > .checkmark');
         this.emailRemove=page.locator('button').nth(5);
         this.emailAdd=page.locator('.line-item-buttons > scrm-button > .btn');
         
@@ -39,23 +39,39 @@ export class ContactPage{
         this.cancel=page.getByRole('button', { name: 'Cancel' });
 
         this.visibleContact=page.getByRole('tab', { name: 'OVERVIEW' });
+
+        this.validationMessage=page.getByText('Missing required field: Last');
 }
 
- async addContact() {
-    await this.contact.hover();
-    await this.createContact.click();
-   
- }
- 
- async enterLastName(lastName) {
-     
-    await this.lastName.fill(lastName);
-        await this.save.click();
- }
+async hoverOverContact() {
+   await this.contact.hover();
+      }
 
- async visibleContact() {
-     
-    await expect(this.visibleContact).toBeVisible();
- }
+   async addContact() {
+      await this.createContact.click();
+   }
+
+// async addContact() {
+//    await this.contact.hover();
+//    await this.createContact.click();
+//    }
+
+async enterLastName(lastName) {
+   await this.lastName.fill(lastName);
+   }
+
+async visibleContact() {
+   await expect(this.visibleContact).toBeVisible();
+   }
+
+ async contactSave(){
+   await this.save.click();
+   }
+
+   async enterEmail(email) {
+   await this.email.fill("123emad");
+   }
+   
+   
 
 }

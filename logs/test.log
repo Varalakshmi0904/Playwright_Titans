@@ -1,44 +1,123 @@
-2026-09-30T18:23:42.275Z [info]: User is on the Create Lead page
-2026-09-30T18:23:45.616Z [info]: User is on the Create Contact page
-2026-09-30T18:23:48.746Z [info]: User clicked the save button with valid contact details
-2026-09-30T18:23:48.845Z [info]: User should see the Contact created successfully
-2026-09-30T18:25:31.543Z [info]: User is on the Create Contact page
-2026-09-30T18:25:34.014Z [info]: User clicked the save button with valid contact details
-2026-09-30T18:25:34.094Z [info]: User should see the Contact created successfully
-2026-09-30T18:36:45.338Z [info]: User is on the Create Lead page
-2026-09-30T18:36:45.747Z [info]: User is on the Create Contact page
-2026-09-30T18:36:48.923Z [info]: User clicked the save button with valid contact details
-2026-09-30T18:36:48.970Z [info]: User should see the Contact created successfully
-2026-09-30T18:37:17.183Z [info]: User is on the Create Contact page
-2026-09-30T18:37:18.504Z [info]: User is on the Create Lead page
-2026-09-30T18:37:20.653Z [info]: User clicked the save button with valid contact details
-2026-09-30T18:37:20.914Z [info]: User should see the Contact created successfully
-2026-10-01T02:29:22.796Z [info]: User is on the Create Document page
-2026-10-01T02:31:49.557Z [info]: User is on the Create Document page
-2026-10-01T02:34:04.267Z [info]: User is on the Create Document page
-2026-10-01T02:46:09.764Z [info]: User is on the Create Document page
-2026-10-01T02:48:39.724Z [info]: User is on the Create Document page
-2026-10-01T02:59:25.516Z [info]: User is on the Create Document page
-2026-10-01T03:10:34.011Z [info]: User is on the Create Document page
-2026-10-01T03:20:32.763Z [info]: User is on the Create Document page
-2026-10-01T03:22:08.316Z [info]: User is on the Create Document page
-2026-10-01T03:23:59.559Z [info]: User is on the Create Document page
-2026-10-01T03:38:23.533Z [info]: User is on the Create Document page
-2026-10-01T03:47:03.568Z [info]: User is on the Create Document page
-2026-10-01T03:48:29.875Z [info]: User is on the Create Document page
-2026-10-01T03:56:36.323Z [info]: User is on the Create Document page
-2026-10-01T03:58:09.550Z [info]: User is on the Create Document page
-2026-10-01T04:02:56.274Z [info]: User is on the Create Document page
-2026-10-01T04:04:00.837Z [info]: User is on the Create Document page
-2026-10-01T04:12:19.501Z [info]: User is on the Create Document page
-2026-10-01T04:15:39.109Z [info]: User is on the Create Document page
-2026-10-01T04:18:06.039Z [info]: User is on the Create Document page
-2026-10-01T04:25:29.219Z [info]: User is on the Create Document page
-2026-10-01T04:29:16.192Z [info]: User is on the Create Document page
-2026-10-01T04:29:17.605Z [info]: User clicks the save button entering all valid details
-2026-10-01T04:33:45.699Z [info]: User is on the Create Document page
-2026-10-01T04:33:47.112Z [info]: User clicks the save button entering all valid details
-2026-10-01T04:42:51.465Z [info]: User is on the Create Document page
-2026-10-01T04:42:55.496Z [info]: User clicks the save button entering all valid details
-2026-10-01T04:43:02.822Z [info]: User is on the Create Document page
-2026-10-01T04:43:08.506Z [info]: User clicks the save button entering all valid details
+2026-09-30T14:59:34.110Z [info]: User is on the Create Lead page
+2026-09-30T15:04:27.687Z [info]: User is on the Create Lead page
+2026-09-30T15:05:28.392Z [info]: User is on the Create Lead page
+2026-09-30T15:13:58.358Z [info]: User is on the Create Lead page
+2026-09-30T15:16:45.979Z [info]: User is on the Create Lead page
+2026-09-30T15:18:09.001Z [info]: User is on the Create Lead page
+2026-09-30T15:20:12.678Z [info]: User is on the Create Lead page
+2026-09-30T15:21:53.874Z [info]: User is on the Create Lead page
+2026-09-30T15:22:38.983Z [info]: User is on the Create Lead page
+2026-09-30T15:22:40.099Z [info]: Lead creation completed using Excel test data: TC01
+2026-09-30T15:22:41.630Z [info]: Lead creation test case: TC01 passed successfully
+2026-09-30T15:23:58.174Z [info]: User is on the Create Lead page
+2026-09-30T15:23:59.077Z [info]: Lead creation completed using Excel test data: TC01
+2026-09-30T15:24:01.166Z [info]: Lead creation test case: TC01 passed successfully
+2026-09-30T15:31:04.067Z [info]: User is on the Create Lead page
+2026-09-30T15:31:06.459Z [info]: Lead creation completed using Excel test data: TC01
+2026-09-30T15:31:06.672Z [info]: User is on the Create Lead page
+2026-09-30T15:31:07.507Z [info]: Lead creation completed using Excel test data: TC01
+2026-09-30T15:31:08.719Z [info]: Lead creation test case: TC01 passed successfully
+2026-09-30T15:31:09.382Z [info]: Lead creation test case: TC01 passed successfully
+2026-09-30T15:33:13.351Z [info]: User is on the Create Lead page
+2026-09-30T15:33:14.208Z [info]: User is on the Create Lead page
+2026-09-30T15:33:15.103Z [info]: Lead creation completed using Excel test data: TC01
+2026-09-30T15:33:16.684Z [info]: Lead creation test case: TC01 passed successfully
+2026-09-30T15:33:16.727Z [info]: Lead creation completed using Excel test data: TC01
+2026-09-30T15:33:18.422Z [info]: Lead creation test case: TC01 passed successfully
+2026-09-30T15:35:12.200Z [info]: User is on the Create Lead page
+2026-09-30T15:35:13.827Z [info]: Lead creation completed using Excel test data: TC01
+2026-09-30T15:35:14.991Z [info]: User is on the Create Lead page
+2026-09-30T15:35:16.017Z [info]: Lead creation test case: TC01 passed successfully
+2026-09-30T15:35:16.838Z [info]: Lead creation completed using Excel test data: TC01
+2026-09-30T15:35:18.212Z [info]: Lead creation test case: TC01 passed successfully
+2026-10-01T01:17:58.133Z [info]: User is on the Create Contact page
+2026-10-01T01:17:59.021Z [info]: User is on the Create Contact page
+2026-10-01T01:18:00.522Z [info]: User clicked the save button with valid contact details
+2026-10-01T01:18:00.542Z [info]: User should see the Contact created successfully
+2026-10-01T01:18:01.029Z [info]: User clicked the save button with valid contact details
+2026-10-01T01:18:01.055Z [info]: User should see the Contact created successfully
+2026-10-01T01:18:02.566Z [info]: User is on the Create Contact page
+2026-10-01T01:18:03.169Z [info]: User clicked the save button with valid contact details
+2026-10-01T01:18:03.197Z [info]: User should see the Contact created successfully
+2026-10-01T01:22:14.494Z [info]: User is on the Create Contact page
+2026-10-01T01:22:15.214Z [info]: User is on the Create Contact page
+2026-10-01T01:22:16.357Z [info]: User clicked the save button with valid contact details
+2026-10-01T01:22:16.385Z [info]: User should see the Contact created successfully
+2026-10-01T01:22:16.831Z [info]: User clicked the save button with valid contact details
+2026-10-01T01:22:16.857Z [info]: User should see the Contact created successfully
+2026-10-01T01:22:16.975Z [info]: User is on the Create Contact page
+2026-10-01T01:22:20.572Z [info]: User clicked the save button with valid contact details
+2026-10-01T01:22:20.588Z [info]: User should see the Contact created successfully
+2026-10-01T02:59:47.137Z [info]: User is on the Create Contact page
+2026-10-01T02:59:48.049Z [info]: User is on the Create Contact page
+2026-10-01T02:59:50.595Z [info]: User clicked the save button with valid contact details
+2026-10-01T02:59:50.618Z [info]: User should see the Contact created successfully
+2026-10-01T02:59:53.778Z [info]: User is on the Create Contact page
+2026-10-01T02:59:54.286Z [info]: User is on the Create Contact page
+2026-10-01T02:59:55.060Z [info]: User is on the Create Contact page
+2026-10-01T02:59:55.641Z [info]: User is on the Create Contact page
+2026-10-01T02:59:57.052Z [info]: User clicked the save button with valid contact details
+2026-10-01T02:59:57.071Z [info]: User should see the Contact created successfully
+2026-10-01T02:59:57.154Z [info]: User clicked the save button with valid contact details
+2026-10-01T02:59:57.205Z [info]: User should see the Contact created successfully
+2026-10-01T03:02:30.370Z [info]: User is on the Create Contact page
+2026-10-01T03:02:34.824Z [info]: User is on the Create Contact page
+2026-10-01T03:02:35.589Z [info]: User is on the Create Contact page
+2026-10-01T03:03:12.920Z [info]: User is on the Create Contact page
+2026-10-01T03:03:13.338Z [info]: User is on the Create Contact page
+2026-10-01T03:03:14.650Z [info]: User is on the Create Contact page
+2026-10-01T03:03:50.052Z [info]: User is on the Create Contact page
+2026-10-01T03:05:00.383Z [info]: User is on the Create Contact page
+2026-10-01T03:11:26.081Z [info]: User is on the Create Contact page
+2026-10-01T03:16:32.730Z [info]: User is on the Create Contact page
+2026-10-01T03:16:33.596Z [info]: User clicked the save button with valid contact details
+2026-10-01T03:16:33.603Z [info]: User should see the Contact created successfully
+2026-10-01T03:17:15.855Z [info]: User is on the Create Contact page
+2026-10-01T03:17:22.645Z [info]: User clicked the save button with valid contact details
+2026-10-01T03:17:32.736Z [info]: User should see the Contact created successfully
+2026-10-01T03:19:08.095Z [info]: User is on the Create Contact page
+2026-10-01T03:19:08.592Z [info]: User is on the Create Contact page
+2026-10-01T03:19:09.569Z [info]: User clicked the save button with valid contact details
+2026-10-01T03:19:09.578Z [info]: User should see the Contact created successfully
+2026-10-01T03:19:09.936Z [info]: User clicks the save button with mandatory fields empty
+2026-10-01T03:19:57.358Z [info]: User is on the Create Contact page
+2026-10-01T03:19:58.749Z [info]: User clicked the save button with valid contact details
+2026-10-01T03:19:58.760Z [info]: User should see the Contact created successfully
+2026-10-01T03:19:59.523Z [info]: User is on the Create Contact page
+2026-10-01T03:20:00.381Z [info]: User clicks the save button with mandatory fields empty
+2026-10-01T03:28:19.803Z [info]: User is on the Create Contact page
+2026-10-01T03:28:21.220Z [info]: User clicked the save button with valid contact details
+2026-10-01T03:28:21.236Z [info]: User should see the Contact created successfully
+2026-10-01T03:28:21.491Z [info]: User is on the Create Contact page
+2026-10-01T03:28:22.333Z [info]: User clicks the save button with mandatory fields empty
+2026-10-01T03:32:27.699Z [info]: User is on the Create Contact page
+2026-10-01T03:32:29.057Z [info]: User clicks the save button with mandatory fields empty
+2026-10-01T03:32:29.139Z [info]: User is on the Create Contact page
+2026-10-01T03:32:30.588Z [info]: User clicked the save button with valid contact details
+2026-10-01T03:32:30.598Z [info]: User should see the Contact created successfully
+2026-10-01T03:36:53.069Z [info]: User is on the Create Contact page
+2026-10-01T03:36:56.125Z [info]: User clicked the save button with valid contact details
+2026-10-01T03:37:00.925Z [info]: User should see the Contact created successfully
+2026-10-01T03:37:22.238Z [info]: User is on the Create Contact page
+2026-10-01T03:37:28.725Z [info]: User clicks the save button with mandatory fields empty
+2026-10-01T03:37:37.640Z [info]: User should see validation messages for the mandatory fields
+2026-10-01T12:48:05.009Z [info]: User is on the Create Contact page
+2026-10-01T12:48:10.755Z [info]: User clicked the save button with valid contact details
+2026-10-01T12:48:16.676Z [info]: User should see the Contact created successfully
+2026-10-01T12:48:37.824Z [info]: User is on the Create Contact page
+2026-10-01T12:48:43.472Z [info]: User clicks the save button with mandatory fields empty
+2026-10-01T12:48:49.968Z [info]: User should see validation messages for the mandatory fields
+2026-10-01T13:32:19.329Z [info]: User is on the Create Contact page
+2026-10-01T13:32:20.443Z [info]: User is on the Create Contact page
+2026-10-01T13:32:24.939Z [info]: User clicked the save button with valid contact details
+2026-10-01T13:32:24.969Z [info]: User should see the Contact created successfully
+2026-10-01T13:33:21.283Z [info]: User is on the Create Contact page
+2026-10-01T13:33:21.920Z [info]: User is on the Create Contact page
+2026-10-01T13:33:23.169Z [info]: User clicked the save button with valid contact details
+2026-10-01T13:33:23.189Z [info]: User should see the Contact created successfully
+2026-10-01T13:34:38.552Z [info]: User is on the Create Contact page
+2026-10-01T13:34:38.606Z [info]: User is on the Create Contact page
+2026-10-01T13:34:40.462Z [info]: User clicked the save button with valid contact details
+2026-10-01T13:34:40.474Z [info]: User should see the Contact created successfully
+2026-10-01T13:34:40.534Z [info]: User clicks the save button with an invalid email
+2026-10-01T13:34:40.561Z [info]: User should see email validation message
