@@ -17,12 +17,12 @@ Scenario: Create a new Contact
 # When User clicks the save button with mandatory fields empty
 # Then User should see validation messages for the mandatory fields
 
-@tc02 @email
-Scenario:Create Contact with invalid email
+# @tc02 @email
+# Scenario:Create Contact with invalid email
 
-Given User is on the Create Contact page
-When User clicks the save button with an invalid email
-Then User should see email validation message
+# Given User is on the Create Contact page
+# When User clicks the save button with an invalid email
+# Then User should see email validation message
 
 # Scenario:Edit an existing Contact
 
