@@ -22,16 +22,16 @@ Then('User should see the Contact created successfully', async ({contactPage}) =
   logger.info('User should see the Contact created successfully');
 });
 
-// When('User clicks the save button with mandatory fields empty', async ({contactPage}) => {
-//   await contactPage.contactSave();
-//   logger.info('User clicks the save button with mandatory fields empty');
-//   });
+When('User clicks the save button with mandatory fields empty', async ({contactPage}) => {
+  await contactPage.contactSave();
+  logger.info('User clicks the save button with mandatory fields empty');
+  });
 
-// Then('User should see validation messages for the mandatory fields', async ({ contactPage }) => {
-//     await expect(contactPage.validationMessage).toBeVisible();
+Then('User should see validation messages for the mandatory fields', async ({ contactPage }) => {
+    await expect(contactPage.validationMessage).toBeVisible();
 
-//     logger.info('User should see validation messages for the mandatory fields');
-// });
+    logger.info('User should see validation messages for the mandatory fields');
+});
 
 When('User clicks the save button with an invalid email', async ({contactPage}) => {
    await contactPage.enterEmail("123emad");

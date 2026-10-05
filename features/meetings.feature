@@ -7,5 +7,14 @@ Background:
 Scenario: Create a new Meeting
 
 Given User is on Meetings Create Page
-When User clicks on save entering all valid details using Excel test data "CreateMeeting"
-Then User should see meeting creating successfully using Excel test data "CreateMeeting"
+When User creates a new meeting using Excel test data "TC001"
+Then Meeting should be created successfully using Excel test data "TC001"
+
+# @paststartdate
+# Scenario: Verify meeting creation with a past start date
+
+# Given User is on Meetings Create Page
+# When User enters a past start date 
+# Then User should not see the meeting created
+
+
