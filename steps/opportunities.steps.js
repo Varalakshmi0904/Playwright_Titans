@@ -28,7 +28,9 @@ When("User clicks Create Opportunity", async ({ opportunitiesPage }) => {
 Then(
   "User should be redirected to the Create Opportunity page",
   async ({ opportunitiesPage }) => {
-    await expect(opportunitiesPage.pageTitle).toBeVisible();
+    await expect(opportunitiesPage.page).toHaveURL(
+      "https://suite8demo.suiteondemand.com/#/opportunities/edit?return_module=Opportunities&return_action=DetailView",
+    );
     logger.info("Create Opportunity page is displayed successfully");
   },
 );
@@ -132,13 +134,13 @@ When(
       "opportunities",
       "InvalidAmount",
     );
-    await opportunitiesPage.fillAllMandatoryFieldsAndSave({
-      opportunityName: opportunitiesData.OpportunityName,
-      accountName: opportunitiesData.AccountName,
-      opportunityAmount: String(opportunitiesData.OpportunityAmount),
-      salesStage: opportunitiesData.SalesStage,
-      closeDate: opportunitiesData.ExpectedCloseDate,
-    });
+    await opportunitiesPage.fillAllMandatoryFieldsAndSave(
+      opportunitiesData.OpportunityName,
+      opportunitiesData.AccountName,
+      String(opportunitiesData.OpportunityAmount),
+      opportunitiesData.SalesStage,
+      opportunitiesData.ExpectedCloseDate,
+    );
   },
 );
 

@@ -48,7 +48,7 @@ Then(
         .getByText(data.lastName, { exact: true })
     ).toBeVisible({
       timeout: 30000,
-    });
+    }); 
 
     logger.info(`Lead creation test case: ${testCase} passed successfully`);
   }
