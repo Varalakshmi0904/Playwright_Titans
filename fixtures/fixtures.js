@@ -5,12 +5,16 @@ import { OpportunitiesPage } from "../pages/OpportunitiesPage.js";
 import { ContactPage } from "../pages/ContactPage.js";
 import { LeadsPage } from "../pages/LeadsPage.js";
 import { QuotesPage } from "../pages/QuotesPage.js";
-
+import { DocumentPage } from '../pages/DocumentPage.js';
+import { InvoicesPage } from '../pages/InvoicesPage.js';
 import { MeetingsPage } from "../pages/MeetingsPage.js";
 
 export const test = base.extend({
   loginPage: async ({ page }, use) => {
     await use(new LoginPage(page));
+  },
+  invoicesPage: async ({ page }, use) => {
+    await use(new InvoicesPage(page));
   },
 
   excelReader: async ({}, use) => {
