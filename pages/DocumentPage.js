@@ -1,12 +1,16 @@
 export class DocumentPage {
     constructor(page) {
         this.page = page;
+        //this.DocumentMenu = page.locator('span').filter({ hasText: 'Documents' }).first();
+        //this.DocumentMenu = page.locator('a[href="#/documents"]');
         this.DocumentMenu = page.locator('a').filter({ hasText: /^Documents$/ })
         this.createDocument = page.getByRole('link', { name: 'Create Document' });
         this.File = page.getByText('FILE', { exact: true });
         //this.fileUploadInput = page.getByText('Upload Click or drag a file');
         this.fileUploadInput = page.locator('input[type="file"]');
+        this.status = page.locator('scrm-dropdownenum-edit').filter({ hasText: 'Active Draft FAQ Expired' }).getByRole('combobox')
         this.documentName = page.getByRole('textbox').nth(1);
+        //this.revision = page.locator('div').filter({ hasText: /^\*REVISION$/ }).nth(2)
         this.revision = page.getByRole('textbox').nth(2);
         this.documentType = page.locator('scrm-dropdownenum-edit').filter({ hasText: 'Mail Merge EULA NDA License' }).getByRole('combobox');
         this.template = page.locator('.checkmark');
@@ -54,11 +58,12 @@ export class DocumentPage {
 
     }
 
-    async hoverOverDocumentMenu() {
-        await this.DocumentMenu.hover();
-    }
+    async DocumentMenuHover() {
+    await this.DocumentMenu.waitFor({ state: "visible" });
+    await this.DocumentMenu.hover();
+}
 
-   
+  
     async clickCreateDocument() 
     { 
       await this.createDocument.waitFor({state: 'visible'});
@@ -71,36 +76,41 @@ export class DocumentPage {
         await this.page.setInputFiles('input[type="file"]', file);
      } 
 
+     async selectDocumentStatus(status) {
+    await this.status.selectOption({ label: status });
+}
+
     async enterDocumentName(name) 
     { 
         await this.documentName.fill(String(name));
      } 
+
+     
     async enterRevision(revision) 
     { 
         await this.revision.fill(revision);
      } 
-    async selectDocumentType(type)
-     { 
-        await this.documentType.click(); 
-        await this.page.getByText(type, { exact: true }).click();
-     } 
-        async selectTemplate() 
-        { 
-            await this.template.first().click();
-         } 
-        async enterPublishDate(date) 
-        {
-             await this.publishDate.fill(date); 
-            } 
-        async enterExpirationDate(date) 
-        { 
-            await this.expirationDate.fill(date); 
-        } 
-        async selectCategory(category)
-         { 
-            await this.categoryDropdown.click(); 
-            await this.page.getByText(category, { exact: true }).click();
-         } 
+
+   async selectDocumentType(type) {
+    await this.documentType.selectOption(type);
+}
+async selectTemplate() 
+  { 
+  await this.template.first().click();
+} 
+async enterPublishDate(date) 
+{
+await this.publishDate.fill(date); 
+} 
+async enterExpirationDate(date) 
+{ 
+await this.expirationDate.fill(date); 
+} 
+async selectCategory(category)
+{ 
+await this.categoryDropdown.click(); 
+await this.page.getByText(category, { exact: true }).click();
+} 
             async selectSubcategory(subcategory) 
             { 
                 await this.subcategoryDropdown.click(); 
