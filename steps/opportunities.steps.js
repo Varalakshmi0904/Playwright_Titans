@@ -189,3 +189,61 @@ Then(
     logger.info("Matching accounts displayed successfully");
   },
 );
+
+When("User clicks View Opportunities", async ({ opportunitiesPage }) => {
+  await opportunitiesPage.viewOpportunitiesClick();
+  logger.info("View Opportunities clicked");
+});
+
+Then(
+  "User should be redirected to the Opportunities page",
+  async ({ opportunitiesPage }) => {
+    await expect(await opportunitiesPage.viewOpportunitiesTitle).toBeVisible();
+    logger.info("Redirected to Opportunities page");
+  },
+);
+Given("User is on the Opportunities page", async ({ opportunitiesPage }) => {
+  await opportunitiesPage.viewOpportunitiesClick();
+  await expect(opportunitiesPage.viewOpportunitiesTitle).toBeVisible();
+
+  logger.info("User is on the Opportunities page");
+});
+
+When("User views the Opportunities page", async ({ opportunitiesPage }) => {
+  await expect(opportunitiesPage.viewOpportunitiesTitle).toBeVisible();
+  logger.info("User views the Opportunities page");
+});
+Then(
+  "User should see the expected columns displayed",
+  async ({ opportunitiesPage }) => {
+    Then(
+      "User should see the expected columns displayed",
+      async ({ opportunitiesPage }) => {
+        await expect(opportunitiesPage.nameColumn).toBeVisible();
+
+        await expect(opportunitiesPage.accountNameColumn).toBeVisible();
+
+        await expect(opportunitiesPage.salesStageColumn).toBeVisible();
+
+        await expect(opportunitiesPage.amountColumn).toBeVisible();
+
+        await expect(opportunitiesPage.closeColumn).toBeVisible();
+
+        await expect(opportunitiesPage.userColumn).toBeVisible();
+
+        await expect(opportunitiesPage.dateCreatedColumn).toBeVisible();
+
+        logger.info("All Opportunities columns are visible");
+      },
+    );
+  },
+);
+When('User clicks {string}', async ({opportunitiesPage}, arg) => {
+  await opportunitiesPage.hoverOpportunitiesMenu();
+  await opportunitiesPage.importOppotunities.click();
+
+});
+
+Then('User should see the Import Opportunities page displayed with {string}', async ({opportunitiesPage}, arg) => {
+  await expect(opportunitiesPage.importStep1Heading).toBeVisible();
+});
