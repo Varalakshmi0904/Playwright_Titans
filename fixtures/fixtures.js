@@ -4,6 +4,8 @@ import { ExcelReader } from "../utils/ExcelReader.js";
 import { OpportunitiesPage } from "../pages/OpportunitiesPage.js";
 import { ContactPage } from "../pages/ContactPage.js";
 import { LeadsPage } from "../pages/LeadsPage.js";
+import { AccountsPage } from "../pages/AccountsPage.js";
+import {DocumentPage } from "../pages/DocumentPage.js";
 
 export const test = base.extend({
   loginPage: async ({ page }, use) => {
@@ -23,4 +25,10 @@ export const test = base.extend({
   leadsPage: async ({ page }, use) => {
     await use(new LeadsPage(page));
   },
+  accountsPage: async ({ page }, use) => {
+    await use(new AccountsPage(page));
+  },
+  documentPage: async ({ page }, use) => {
+    await use(new DocumentPage(page));
+  }
 });

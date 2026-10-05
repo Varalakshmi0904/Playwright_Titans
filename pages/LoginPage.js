@@ -11,11 +11,14 @@ export class LoginPage{
 }
 async goto() {
         await this.page.goto('/#/Login');
+       
     
 }
 async enterCredentials(username, password) {
     await this.username.fill(username);
     await this.password.fill(password);
     await this.loginButton.click();
+  
   }
+  
 }
