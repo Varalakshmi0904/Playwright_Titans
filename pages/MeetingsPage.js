@@ -46,9 +46,10 @@ export class MeetingsPage {
 
     this.searchInviteesButton=page.locator('iframe').contentFrame().getByRole('button', { name: 'Save', description: 'Save [Alt+a]' });
 
-    
+      this.saveMeetingButton=page.locator('iframe').contentFrame().getByRole('button', { name: 'Save', description: 'Save [Alt+a]' });
 
-    this.saveMeetingButton=page.locator('iframe').contentFrame().getByRole('button', { name: 'Save', description: 'Save [Alt+a]' });
+      
+
       }
 
   async hoverOverMeeting() {
@@ -61,12 +62,11 @@ export class MeetingsPage {
     await this.scheduleMeeting.click();
   }
 
-    async enterSubject(subject) {
+    async enterSubjectAndStartDate(subject,startDate) {
         await this.subject.fill(String(subject));
+        await this.startDate.fill(String(startDate));
     
   }
-
-
 
   async saveMeeting(){
    await this.saveMeetingButton.click();
@@ -85,10 +85,5 @@ export class MeetingsPage {
     await this.startDate.fill(date);
   }
 
-  //  async quoteHeading(title) {
-  //   return this.page
-  //     .locator("iframe")
-  //     .contentFrame()
-  //     .getByRole("heading", { name: title });
-  // }
+ 
 }

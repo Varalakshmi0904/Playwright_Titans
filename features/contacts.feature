@@ -4,22 +4,19 @@ Feature: Contacts - Functional Validations
   Background:
     Given User is logged into the SuiteCRM Dashboard page
 
-Scenario: Create a new Contact
+Scenario: Create a new Contact TC001
 Given User is on the Create Contact page
 When User clicks the save button entering all valid contact details
 Then User should see the Contact created successfully
 
-@tc01 @createContact
-Scenario: Create Contact with mandatory fields missing
+@createContact
+Scenario: Create Contact with mandatory fields missing  TC002
 Given User is on the Create Contact page
 When User clicks the save button with mandatory fields empty
 Then User should see validation messages for the mandatory fields
 
-
-
-@tc02 @contactEmail
-Scenario:Create Contact with invalid email
-
+@contactEmail
+Scenario:Create Contact with invalid email TC003
 Given User is on the Create Contact page
 When User clicks the save button with an invalid email
 Then User should see email validation message
@@ -28,6 +25,7 @@ Then User should see email validation message
 # Given User is on the Contacts page
 # When User clicks the save button by selecting a Contact, updates details
 # Then User should see the updated Contact details
+
 # Scenario: Search for a Contact
 # Given User is on the Contacts page
 # When User searches using valid contact information
