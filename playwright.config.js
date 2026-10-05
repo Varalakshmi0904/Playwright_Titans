@@ -8,6 +8,11 @@ const testDir = defineBddConfig({
   features: [
     "./features/login.feature",
     "./features/contacts.feature",
+    // "./features/opportunities.feature",
+     "./features/leads.feature",
+     "./features/accounts.feature",
+    //  "./features/contacts.feature",
+    //  "./features/opportunities.feature",
     "./features/opportunities.feature",
     "./features/leads.feature",
        "./features/quotes.feature",
@@ -16,6 +21,9 @@ const testDir = defineBddConfig({
   steps: [
     "./steps/login.steps.js",
      "./steps/contacts.steps.js",
+    // "./steps/opportunities.steps.js",
+     "./steps/leads.steps.js",
+     "./steps/accounts.steps.js",
     "./steps/opportunities.steps.js",
     "./steps/leads.steps.js",
     "./steps/quotes.steps.js",

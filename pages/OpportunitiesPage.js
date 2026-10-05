@@ -77,6 +77,28 @@ export class OpportunitiesPage {
     this.accountSearchBox = this.accountDropdownPanel.locator(
       "input.p-dropdown-filter",
     );
+
+    this.viewOpportunitiesTitle = page.getByText("OPPORTUNITIES", {
+      exact: true,
+    });
+
+
+
+    this.nameColumn = page.getByText("Name", { exact: true });
+this.accountNameColumn = page.getByRole("columnheader", {
+  name: "Account Name",
+});
+this.salesStageColumn = page.getByText("Sales Stage", { exact: true });
+this.amountColumn = page.getByRole("columnheader", { name: "Amount" });
+this.closeColumn = page.getByText("Close", { exact: true });
+this.userColumn = page.getByText("User", { exact: true });
+this.dateCreatedColumn = page.getByText("Date Created", { exact: true });
+
+
+
+this.importOppotunities=page.getByRole('link', { name: 'Import Opportunities' })
+this.importStep1Heading=page.locator('iframe').contentFrame().getByRole('heading', { name: 'Step 1: Upload Import File' })
+
   }
 
   async hoverOpportunitiesMenu() {
@@ -108,13 +130,13 @@ export class OpportunitiesPage {
   async getMandatoryFieldLabel(fieldName) {
     return this.mandatoryField[fieldName];
   }
- async fillAllMandatoryFieldsAndSave({
-  opportunityName,
-  accountName,
-  opportunityAmount,
-  salesStage,
-  closeDate,
-}) {
+  async fillAllMandatoryFieldsAndSave({
+    opportunityName,
+    accountName,
+    opportunityAmount,
+    salesStage,
+    closeDate,
+  }) {
     if (opportunityName) {
       await this.opportunityNameInput.fill(opportunityName);
     }
@@ -160,5 +182,10 @@ export class OpportunitiesPage {
 
   async getMatchingAccounts() {
     return this.accountDropdownPanel.getByRole("option");
+  }
+
+  async viewOpportunitiesClick() {
+    await this.hoverOpportunitiesMenu();
+    await this.viewOpportunitiesDropdown.click();
   }
 }

@@ -3,13 +3,21 @@ export class MeetingsPage {
     this.page = page;
 
     this.calendarMenu= page.locator('a').filter({ hasText: 'Calendar' });
+    
+    
     this.scheduleMeeting=page.getByRole('link', { name: 'Schedule Meeting' });
     this.meetingMenu=page.locator('a').nth(1);
-    this.subjectEnter=page.locator('iframe').contentFrame().locator('#name');
+    this.subject=page.locator('iframe').contentFrame().locator('#name');
     
-       
-    this.startDateInput=page.locator('iframe').contentFrame().locator('#date_start_date');
-    this.endDateInput=page.locator('iframe').contentFrame().locator('#date_end_date');
+
+    this.startDate=page.locator('iframe').contentFrame().locator('#date_start_date');
+    this.endDate=page.locator('iframe').contentFrame().locator('#date_end_date');
+    
+    this.calendarIcon=page.locator('iframe').contentFrame().locator('#date_start_trigger');
+    this.monthSelect=page.locator('iframe').contentFrame().getByLabel('Choose Month');
+    this.yearInput=page.locator('iframe').contentFrame().getByRole('textbox', { name: 'Enter Year' });
+
+
     this.startHourInput=page.locator('iframe').contentFrame().locator('#date_start_hours');
     this.startMinuteInput=page.locator('iframe').contentFrame().locator('#date_start_minutes');
     this.endHourInput=page.locator('iframe').contentFrame().locator('#date_end_hours');
@@ -44,6 +52,7 @@ export class MeetingsPage {
       }
 
   async hoverOverMeeting() {
+    await this.calendarMenu.waitFor({ state: 'visible' });
     await this.calendarMenu.hover();
   }
 
@@ -52,9 +61,9 @@ export class MeetingsPage {
     await this.scheduleMeeting.click();
   }
 
-  async inputSubject(data) {
-        await this.subjectEnter.fill(data.Subject);
-    // await this.descriptionInput.fill("Discuss contract terms and renewal options.");
+    async enterSubject(subject) {
+        await this.subject.fill(String(subject));
+    
   }
 
 
@@ -67,6 +76,14 @@ export class MeetingsPage {
     return this.page.locator('iframe').contentFrame().getByRole('heading', { name: title })
    
    }
+   async startDateInput(date) {
+      await this.startDate.fill(date);
+      
+   
+  }
+  async enterStartDate(date) {
+    await this.startDate.fill(date);
+  }
 
   //  async quoteHeading(title) {
   //   return this.page
