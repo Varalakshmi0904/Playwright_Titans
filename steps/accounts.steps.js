@@ -1,157 +1,179 @@
-import { Given, When, Then } from '@cucumber/cucumber';
+import { createBdd } from "playwright-bdd";
+import { expect } from "@playwright/test";
+import { test } from "../fixtures/fixtures.js";
+import { logger } from "../utils/logger.js";
 
-Given('User is on the Create Account page', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  When('User enters valid account details and saves', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  Then('User should see the account created successfully', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  When('User leaves mandatory fields empty and saves', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  Then('User should see appropriate validation messages', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  When('User enters invalid account information and saves', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  Given('User is on the Accounts page', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  When('User selects an account, updates details and saves', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  Then('User should see the updated account details', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  When('User searches using valid account information', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  Then('User should see the matching account', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  When('User applies an account filter', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  Then('User should see accounts matching the selected criteria', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  When('User selects an account', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  Then('User should see the account details', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  When('User selects and deletes an account', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  Then('User should see the account removed successfully', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  Given('User is viewing an existing account', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  When('User changes the account information', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  Then('User should see the updated information', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  Given('A lead has been converted to an account', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  When('User opens the Accounts page', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  Then('User should see the converted lead information associated with the account', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  Given('User is on the Create Lead page', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  When('User enters valid lead details and saves', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  Then('User should see the lead created successfully', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  Given('User is on the Login page', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  When('User clicks the Log In button with valid credentials', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  Then('User should be redirected to the Home page', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  When('the user enters invalid credentials for {string}', function (string) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
-  Then('the user should see {string} message', function (string) {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
-  });
-  
+const { Given, When, Then } = createBdd(test);
+
+Given("User is on the Accounts page", { timeout: 60000 },
+  async ({ accountsPage }) => {
+    await accountsPage.hoverOverAccountsMenu();
+
+    logger.info("User is on the Accounts page");
+  }
+);
+
+// TC01
+When(
+  "User creates a new account with mandatory fields using Excel test data {string}",{ timeout: 60000 },
+  async ({ accountsPage, excelReader }, testCase) => {
+    const data = excelReader.getExcelData("AccountsData", testCase);
+
+    await accountsPage.openCreateAccount();
+    await accountsPage.enterAccountName(data.name);
+    await accountsPage.saveAccount();
+
+    logger.info(
+      `Account creation completed using Excel test data: ${testCase}`
+    );
+  }
+);
+Then(
+  'Account should be created successfully using Excel test data "TC01"',
+  async ({ page, excelReader }) => {
+
+    const data = excelReader.getExcelData("AccountsData", "TC01");
+
+    await expect(
+      page.getByText(data.name).last()
+    ).toBeVisible({ timeout: 30000 });
+
+    logger.info(`Account created successfully: ${data.name}`);
+  }
+);
+
+// TC02
+When(
+  "User creates a new account using Excel test data {string}",
+  async ({ accountsPage, excelReader }, testCase) => {
+    const data = excelReader.getExcelData("AccountsData", testCase);
+
+    await accountsPage.openCreateAccount();
+
+    await accountsPage.enterAccountName(data.name);
+
+    await accountsPage.enterContactDetails(
+      data.website,
+      data.officePhone,
+      data.emailAddress
+    );
+
+    await accountsPage.enterBillingAddress(
+      data.billingStreet,
+      data.billingPostalcode,
+      data.billingCity,
+      data.billingState,
+      data.billingCountry
+    );
+
+    await accountsPage.enterShippingAddress(
+      data.shippingStreet,
+      data.shippingPostalcode,
+      data.shippingCity,
+      data.shippingState,
+      data.shippingCountry
+    );
+
+    await accountsPage.enterDescription(data.description);
+
+    await accountsPage.saveAccount();
+
+    logger.info(
+      `Account creation completed using Excel test data: ${testCase}`
+    );
+  }
+);
+Then(
+  'Account should be created successfully using Excel test data "TC02"',
+  async ({ page, excelReader }) => {
+
+    const data = excelReader.getExcelData("AccountsData", "TC02");
+
+    await expect(
+      page.getByText(data.name).last()
+    ).toBeVisible({ timeout: 30000 });
+
+    logger.info(`Account created successfully: ${data.name}`);
+  }
+);
+
+//TC03
+
+
+When(
+  "User clicks on View Accounts and selects an account using Excel test data {string}",
+  { timeout: 60000 },
+  async ({ accountsPage, excelReader, page }, testCase) => {
+    const data = excelReader.getExcelData("AccountsData", testCase);
+
+    logger.info(`Test case: ${testCase}`);
+    logger.info(`Account name from Excel: ${data.name}`);
+
+    await accountsPage.openViewAccounts();
+
+    const account = page
+      .locator("table")
+      .getByText(data.name, { exact: true })
+      .first();
+      logger.info("Clicked on View Accounts");
+      await account.waitFor({state: "visible",timeout: 30000
+      });
+    logger.info(`Account found: ${data.name}`);
+    await account.click();
+    logger.info(`Clicked on account: ${data.name}`);
+  }
+);
+
+Then(
+  "Account details should be displayed using Excel test data {string}",
+  async ({ page, excelReader }, testCase) => {
+    const data = excelReader.getExcelData("AccountsData", testCase);
+
+    logger.info(`Expected account: ${data.name}`);
+
+    logger.info(
+      `View Account test case: ${testCase} completed successfully`
+    );
+  }
+);
+// TC04
+When(
+  "User edits the account using Excel test data {string}",
+  { timeout: 30000 },
+  async ({ accountsPage, excelReader }, testCase) => {
+    const data = excelReader.getExcelData("AccountsData", testCase);
+
+    await accountsPage.editViewButton();
+
+    logger.info(`Clicked on Edit button for account: ${data.name}`);
+
+    const updatedAccountName = `${data.name} Ltd`;
+
+    await accountsPage.enterAccountName(updatedAccountName);
+
+    logger.info(`Updated account name to: ${updatedAccountName}`);
+
+    await accountsPage.saveAccount();
+
+    logger.info("Clicked on Save button to update the account");
+  }
+);
+
+Then(
+  "Account should be updated successfully using Excel test data {string}",
+  async ({ page, excelReader }, testCase) => {
+    const data = excelReader.getExcelData("AccountsData", testCase);
+
+    const updatedAccountName = `${data.name} Ltd`;
+
+    await expect(
+      page
+        .locator("span.dynamic-label.ng-star-inserted")
+        .filter({ hasText: updatedAccountName })
+    ).toBeVisible({ timeout: 10000 });
+
+    logger.info(
+      `Account update test case: ${testCase} passed successfully`
+    );
+  }
+);
