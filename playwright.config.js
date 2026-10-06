@@ -8,25 +8,25 @@ const testDir = defineBddConfig({
   features: [
     "./features/login.feature",
     "./features/contacts.feature",
-    // "./features/opportunities.feature",
+    "./features/opportunities.feature",
      "./features/leads.feature",
      "./features/accounts.feature",
-    //  "./features/contacts.feature",
-    //  "./features/opportunities.feature",
-    "./features/opportunities.feature",
-    "./features/leads.feature",
+     "./features/contacts.feature",
+     "./features/meetings.feature",
+      "./features/leads.feature",
+      "./features/meetings.feature",
        "./features/quotes.feature",
   ],
 
   steps: [
     "./steps/login.steps.js",
      "./steps/contacts.steps.js",
-    // "./steps/opportunities.steps.js",
+    "./steps/opportunities.steps.js",
      "./steps/leads.steps.js",
      "./steps/accounts.steps.js",
-    "./steps/opportunities.steps.js",
-    "./steps/leads.steps.js",
+      "./steps/leads.steps.js",
     "./steps/quotes.steps.js",
+    "./steps/meetings.steps.js",
     "./fixtures/fixtures.js",
   ],
 });
@@ -78,15 +78,15 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
 
-    // {
-    //   name: "firefox",
-    //   use: { ...devices["Desktop Firefox"] },
-    // },
+    {
+      name: "firefox",
+      use: { ...devices["Desktop Firefox"] },
+    },
 
-    // {
-    //   name: "webkit",
-    //   use: { ...devices["Desktop Safari"] },
-    // },
+    {
+      name: "webkit",
+      use: { ...devices["Desktop Safari"] },
+    },
 
     /* Test against mobile viewports. */
     // {
