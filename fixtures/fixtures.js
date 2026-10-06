@@ -3,13 +3,13 @@ import { LoginPage } from "../pages/LoginPage.js";
 import { ExcelReader } from "../utils/ExcelReader.js";
 import { OpportunitiesPage } from "../pages/OpportunitiesPage.js";
 import { ContactPage } from "../pages/ContactPage.js";
+import { MeetingsPage } from "../pages/MeetingsPage.js";
 import { LeadsPage } from "../pages/LeadsPage.js";
 import { AccountsPage } from "../pages/AccountsPage.js";
 import { DocumentPage } from "../pages/DocumentPage.js";
 import { QuotesPage } from "../pages/QuotesPage.js";
-import { DocumentPage } from '../pages/DocumentPage.js';
 import { InvoicesPage } from '../pages/InvoicesPage.js';
-import { MeetingsPage } from "../pages/MeetingsPage.js";
+
 
 export const test = base.extend({
   loginPage: async ({ page }, use) => {
