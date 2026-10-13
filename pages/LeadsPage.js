@@ -1,4 +1,4 @@
-class LeadsPage {
+export class LeadsPage {
     constructor(page) {
       this.page = page;
   
@@ -153,5 +153,5 @@ class LeadsPage {
     }
   }
   
-  module.exports = { LeadsPage };
+ // module.exports = { LeadsPage };
   
