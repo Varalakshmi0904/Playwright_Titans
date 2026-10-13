@@ -1,0 +1,1 @@
+export const AUTH_FILE = "storageState/auth.json";

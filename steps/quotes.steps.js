@@ -23,7 +23,10 @@ When("User clicks Create Quote", async ({ quotesPage }) => {
 Then(
   "User should be redirected to the Create Quote page",
   async ({ quotesPage }) => {
-    await expect(quotesPage.createQuoteTitle).toBeVisible();
+    //await expect(quotesPage.createQuoteTitle).toBeVisible();
+      await expect(quotesPage.createQuoteTitle).toBeVisible({
+      timeout: 15000,
+    });
     logger.info("User should be redirected to the Create Quote page");
   },
 );

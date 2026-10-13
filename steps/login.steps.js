@@ -7,22 +7,33 @@ Given("User is on the Login page", async ({ loginPage }) => {
   await loginPage.goto();
 });
 
+// Given(
+//   "User is logged into the SuiteCRM Dashboard page",
+//   async ({ loginPage, excelReader }) => {
+//     const loginData = excelReader.getExcelData("login", "ValidCredentials");
+//     await loginPage.goto();
+//     await loginPage.enterCredentials(loginData.username, loginData.password);
+   
+//   },
+  
+// );
 Given(
   "User is logged into the SuiteCRM Dashboard page",
-  async ({ loginPage, excelReader }) => {
-    const loginData = excelReader.getExcelData("login", "ValidCredentials");
-    await loginPage.goto();
-    await loginPage.enterCredentials(loginData.username, loginData.password);
-   
+  async ({ page, quotesPage }) => {
+    await page.goto("/#/home");
+    await expect(page).toHaveURL(/#\/home/, { timeout: 20000 });
+    await expect(quotesPage.quotesMenu).toBeVisible({ timeout: 20000 });
   },
-  
 );
+
 
 When(
   "User enters the valid credentials from Excel and click login",
   async ({ loginPage, excelReader }) => {
     const loginData = excelReader.getExcelData("login", "ValidCredentials");
     await loginPage.enterCredentials(loginData.username, loginData.password);
+  //    await loginPage.enterLoginDetails();
+  // await loginPage.clickLogin();
   },
 );
 
