@@ -247,3 +247,26 @@ When('User clicks {string}', async ({opportunitiesPage}, arg) => {
 Then('User should see the Import Opportunities page displayed with {string}', async ({opportunitiesPage}, arg) => {
   await expect(opportunitiesPage.importStep1Heading).toBeVisible();
 });
+
+Given('User is on the import Opportunities page with {string} displayed', async ({ opportunitiesPage }, arg) => {
+  await opportunitiesPage.importOpportunitiesClick();
+  // await expect(opportunitiesPage.importStep1Heading).toBeVisible();
+
+});
+
+When('User clicks choose file and uploads a file', async ({ opportunitiesPage }) => {
+  await opportunitiesPage.chooseFileToImport();
+  
+  await opportunitiesPage.importOpportunitiesNext();
+  await expect(opportunitiesPage.step2).toBeVisible();
+  await opportunitiesPage.importOpportunitiesNext()
+  await expect(opportunitiesPage.step3).toBeVisible();
+  await opportunitiesPage.importOpportunitiesNext()
+  await expect(opportunitiesPage.step4).toBeVisible();
+   await opportunitiesPage.importNowButton();
+});
+
+Then('User should see import Record Created Message displayed with {string}', async ({ opportunitiesPage }, arg) => {
+    await expect(opportunitiesPage.importRecordCreatedMsg).toBeVisible();
+});
+

@@ -1,7 +1,18 @@
+import path from 'node:path';
+
+const csvData = path.resolve(
+  process.cwd(),
+  'testData',
+  'Opp_create1.csv'
+);
+
+// console.log(csvData);
+
 export class OpportunitiesPage {
   constructor(page) {
-    this.page = page;
-
+        
+      this.page = page;
+    
     this.opportunitiesHoverOver = page
       .locator("a")
       .filter({ hasText: /^Opportunities$/ });
@@ -15,10 +26,26 @@ export class OpportunitiesPage {
       name: "View Opportunities",
     });
 
-    this.importOpportunityDropdown = page.getByRole("link", {
+    this.importOpportunitiesDropdown = page.getByRole("link", {
       name: "Import Opportunities",
     });
 
+    this.chooseFile = page.locator('iframe').contentFrame().getByRole('button', { name: 'Select file:' });
+
+    // this.chooseFile = page.locator('iframe').first().contentFrame().locator('input[type="file"]');
+
+    this.importOpportunitiesNextButton= page.locator('iframe').contentFrame().getByRole('button', { name: 'Next >' });
+    this.importNow = page.locator('iframe').contentFrame().getByRole('button', { name: 'Import Now' });
+    this.viewImportResults = page.locator('iframe').contentFrame().getByRole('heading', { name: 'Step 5: View Import Results' });
+    this.importRecordCreatedMsg = page.locator('iframe').contentFrame().getByRole('heading', { name: 'Step 5: View Import Results' })
+
+    this.step2 = page.locator('iframe').contentFrame().getByRole('heading', { name: 'Step 2: Confirm Import File' });
+    this.step3 = page.locator('iframe').contentFrame().getByRole('heading', { name: 'Step 3: Confirm Field Mappings' });
+    this.step4 = page.locator('iframe').contentFrame().getByRole('heading', { name: 'Step 4: Check for Possible' });
+
+    
+    this.step5 = page.locator('iframe').contentFrame().getByRole('heading', { name: 'Step 5: View Import Results' });
+    
     this.pageTitle = page.getByText("Create", { exact: true });
 
     this.opportunityNameInput = page.locator(
@@ -96,7 +123,7 @@ this.dateCreatedColumn = page.getByText("Date Created", { exact: true });
 
 
 
-this.importOppotunities=page.getByRole('link', { name: 'Import Opportunities' })
+this.importOpportunities=page.getByRole('link', { name: 'Import Opportunities' })
 this.importStep1Heading=page.locator('iframe').contentFrame().getByRole('heading', { name: 'Step 1: Upload Import File' })
 
   }
@@ -109,7 +136,7 @@ this.importStep1Heading=page.locator('iframe').contentFrame().getByRole('heading
     return (
       (await this.createOpportunityDropdown.isVisible()) &&
       (await this.viewOpportunitiesDropdown.isVisible()) &&
-      (await this.importOpportunityDropdown.isVisible())
+      (await this.importOpportunitiesDropdown.isVisible())
     );
   }
 
@@ -123,9 +150,8 @@ this.importStep1Heading=page.locator('iframe').contentFrame().getByRole('heading
     await this.viewOpportunitiesDropdown.click();
   }
 
-  async clickImportOpportunities() {
-    await this.importOpportunityDropdown.click();
-  }
+  
+  
 
   async getMandatoryFieldLabel(fieldName) {
     return this.mandatoryField[fieldName];
@@ -187,5 +213,25 @@ this.importStep1Heading=page.locator('iframe').contentFrame().getByRole('heading
   async viewOpportunitiesClick() {
     await this.hoverOpportunitiesMenu();
     await this.viewOpportunitiesDropdown.click();
+  }
+
+   async importOpportunitiesClick() {
+    await this.hoverOpportunitiesMenu();
+    await this.importOpportunitiesDropdown.click();
+  }
+
+async chooseFileToImport() {
+    // const fileInput = this.page.locator('input[type="file"]');
+    // await this.chooseFile.click();
+    await this.chooseFile.setInputFiles(csvData);
+
+  
+}
+   async importOpportunitiesNext() {
+    await this.importOpportunitiesNextButton.click();
+  }
+  
+    async importNowButton() {
+    await this.importNow.click();
   }
 }

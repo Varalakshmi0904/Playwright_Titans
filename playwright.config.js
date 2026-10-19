@@ -9,10 +9,10 @@ const testDir = defineBddConfig({
   features: [
     "./features/login.feature",
 
-    // "./features/contacts.feature",
+    "./features/contacts.feature",
     // "./features/meetings.feature",
-     "./features/opportunities.feature",
-     "./features/quotes.feature",
+    //  "./features/opportunities.feature",
+    //  "./features/quotes.feature",
     // "./features/documents.feature",
     // "./features/invoices.feature",
     // "./features/leads.feature",
@@ -22,10 +22,10 @@ const testDir = defineBddConfig({
   steps: [
     "./steps/login.steps.js",
 
-    // "./steps/contacts.steps.js",
+    "./steps/contacts.steps.js",
     // "./steps/meetings.steps.js",
-     "./steps/opportunities.steps.js",
-    "./steps/quotes.steps.js",
+    //  "./steps/opportunities.steps.js",
+    // "./steps/quotes.steps.js",
     // "./steps/documents.steps.js",
     // "./steps/invoices.steps.js",
     // "./steps/leads.steps.js",
