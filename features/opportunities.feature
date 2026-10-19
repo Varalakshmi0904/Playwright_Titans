@@ -62,7 +62,11 @@ Feature: Opportunities Module
     When User clicks "Import Opportunities"
     Then User should see the Import Opportunities page displayed with "Step 1: Upload Import File"
 
-
+ @tc9 @import
+  Scenario: Verify Import Opportunities record created
+    Given User is on the import Opportunities page with "Step 1: Upload Import File" displayed
+    When User clicks choose file and uploads a file
+    Then User should see import Record Created Message displayed with "records were created"
 
 
 
