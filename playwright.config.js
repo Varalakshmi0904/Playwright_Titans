@@ -57,7 +57,9 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 1,
   // workers: process.env.CI ? 1 : 4,
 
-  workers: Number(process.env.WORKERS) || (process.env.CI ? 1 : 4), // Use workers in Jenkins as well
+  //workers: Number(process.env.WORKERS) || (process.env.CI ? 1 : 4), // Use workers in Jenkins as well
+
+  workers: Number(process.env.WORKERS) || 4,
 
   reporter: [["line"], ["allure-playwright"], ["html"]],
 
