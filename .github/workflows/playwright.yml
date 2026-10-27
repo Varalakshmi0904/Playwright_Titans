@@ -58,8 +58,8 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Generate storage state
-        run: npx playwright test --project=setup
-
+        run: npx playwright test --project=setup-chromium --project=setup-firefox
+        
       - name: Run Playwright tests
         run: npx playwright test
 
