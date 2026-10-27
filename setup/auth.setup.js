@@ -4,12 +4,15 @@ import path from "path";
 import "dotenv/config";
 import { LoginPage } from "../pages/LoginPage.js";
 import { ExcelReader } from "../utils/ExcelReader.js";
-import { QuotesPage } from "../pages/QuotesPage.js";
-import { AUTH_FILE } from "../utils/authPath.js";
+import { authFileFor } from "../utils/authPath.js";
 
-setup("authenticate and save storage state", async ({ page }) => {
-  // The demo site is slow, so give setup more time than the 30s default
+setup("authenticate and save storage state", async ({ page }, testInfo) => {
+  // The demo site is slow, so give setup more time
   setup.setTimeout(120000);
+
+  // Project is named "setup-chromium", "setup-firefox" or "setup-webkit"
+  const browserName = testInfo.project.name.replace("setup-", "");
+  const authFile = authFileFor(browserName);
 
   if (!process.env.EXCEL_PATH) {
     throw new Error("EXCEL_PATH is not set. Check your .env file.");
@@ -24,19 +27,14 @@ setup("authenticate and save storage state", async ({ page }) => {
     );
   }
 
-  // Log in through the UI once
+  // Log in through the UI once, using this browser
   const loginPage = new LoginPage(page);
   await loginPage.goto();
   await loginPage.enterCredentials(loginData.username, loginData.password);
 
-  // Don't wait for the "load" event, which a single-page app may delay
   await expect(page).toHaveURL(/#\/home/, { timeout: 60000 });
 
-  // Wait until the logged-in navbar has rendered
- // const quotesPage = new QuotesPage(page);
- // await expect(quotesPage.quotesMenu).toBeVisible({ timeout: 60000 });
-
-  // Save cookies + localStorage
-  fs.mkdirSync(path.dirname(AUTH_FILE), { recursive: true });
-  await page.context().storageState({ path: AUTH_FILE });
+  // Save cookies + localStorage for this browser only
+  fs.mkdirSync(path.dirname(authFile), { recursive: true });
+  await page.context().storageState({ path: authFile });
 });
