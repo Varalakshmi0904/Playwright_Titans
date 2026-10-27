@@ -55,7 +55,9 @@ export default defineConfig({
 
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 1,
-  workers: process.env.CI ? 1 : 4,
+  // workers: process.env.CI ? 1 : 4,
+
+  workers: Number(process.env.WORKERS) || (process.env.CI ? 1 : 4), // Use workers in Jenkins as well
 
   reporter: [["line"], ["allure-playwright"], ["html"]],
 
